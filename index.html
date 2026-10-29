@@ -265,10 +265,10 @@ footer a:hover{color:var(--paper)}
 /* ===== CIFRAS ===== */
 .stats-sec{padding-block:30px 10px}
 .stats{display:grid;grid-template-columns:repeat(var(--n,4),minmax(0,1fr));border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.stat{padding:28px clamp(14px,2vw,28px);display:grid;gap:8px;border-left:1px solid var(--line);position:relative}
+.stat{padding:28px clamp(14px,2vw,28px);display:grid;gap:10px;min-width:0;align-content:start;border-left:1px solid var(--line);position:relative}
 .stat:first-child{border-left:0}
 .stat .ch{font-family:var(--osd);font-size:18px;color:var(--mute);line-height:1}
-.stat b{font-family:var(--display);font-weight:900;font-size:clamp(40px,5.4vw,76px);line-height:.9;letter-spacing:-.02em;font-variant-numeric:tabular-nums;color:var(--paper)}
+.stat b{font-family:var(--display);font-weight:900;font-size:clamp(32px,4.1vw,58px);white-space:nowrap;line-height:.95;letter-spacing:-.02em;font-variant-numeric:tabular-nums;color:var(--paper)}
 .stat b.hot{color:var(--red)}
 .stat .label{color:var(--dust)}
 @media (max-width:760px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.stat:nth-child(3){border-left:0}.stat:nth-child(n+3){border-top:1px solid var(--line)}}
@@ -304,16 +304,27 @@ body.lock{overflow:hidden}
 .ig-sec{overflow:hidden}
 .ig-handle{font-family:var(--osd);font-size:30px;color:var(--tape);line-height:1;text-decoration:none}
 .ig-handle:hover{color:var(--paper)}
-.ig-reel{display:grid;grid-auto-flow:column;grid-auto-columns:min(340px,84vw);gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 2px 24px;scrollbar-width:none;align-items:start}
+.ig-reel{display:grid;grid-auto-flow:column;grid-auto-columns:min(300px,78vw);gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 2px 24px;scrollbar-width:none;align-items:stretch}
 .ig-reel::-webkit-scrollbar{display:none}
-.ig-card{scroll-snap-align:start;min-width:0;position:relative;background:var(--night);border:1px solid var(--line);padding:10px}
-.ig-card::before{content:attr(data-n);position:absolute;top:-12px;left:12px;z-index:2;font-family:var(--osd);font-size:20px;line-height:1;background:var(--red);color:#fff;padding:3px 8px}
-.ig-card blockquote.instagram-media{margin:0!important;min-width:0!important;width:100%!important;max-width:100%!important;border:0!important;box-shadow:none!important;background:var(--panel)!important;border-radius:4px!important}
-.ig-card iframe{min-width:0!important;max-width:100%!important;width:100%!important;border-radius:4px!important;background:#fff}
-.ig-fallback{display:grid;place-content:center;gap:12px;text-align:center;aspect-ratio:4/5;text-decoration:none;color:var(--paper);padding:24px}
-.ig-fallback b{font-family:var(--display);font-weight:900;font-size:22px;text-transform:uppercase;line-height:1.05}
-.ig-fallback svg{width:46px;height:46px;justify-self:center}
-.ig-follow{display:grid;place-content:center;gap:16px;text-align:center;text-decoration:none;border:2px dashed var(--line);min-height:420px;padding:28px;transition:border-color .2s,background .2s}
+.ig-card{scroll-snap-align:start;min-width:0;display:grid;grid-template-rows:auto 1fr;background:var(--night);border:1px solid var(--line);transition:border-color .2s,transform .25s}
+.ig-card:hover{border-color:var(--red);transform:translateY(-3px)}
+.ig-media{position:relative;aspect-ratio:1/1;overflow:hidden;background:var(--panel)}
+.ig-media blockquote.instagram-media{position:absolute!important;inset:0!important;margin:0!important;padding:0!important;min-width:0!important;width:100%!important;max-width:none!important;border:0!important;box-shadow:none!important;background:transparent!important;border-radius:0!important}
+.ig-media iframe{position:absolute!important;top:0!important;left:0!important;width:100%!important;min-width:0!important;max-width:none!important;margin:0!important;border:0!important;border-radius:0!important;box-shadow:none!important;pointer-events:none;transform-origin:50% 0;opacity:0;filter:grayscale(.35) contrast(1.05) brightness(.9);transition:opacity .5s,filter .35s}
+.ig-media.ready iframe{opacity:1}
+.ig-card:hover .ig-media iframe{filter:none}
+.ig-media::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(0,0,0,.16) 0 1px,transparent 1px 3px),linear-gradient(0deg,rgba(13,12,12,.55),transparent 35%);transition:opacity .3s}
+.ig-card:hover .ig-media::after{opacity:.35}
+.ig-go{position:absolute;inset:0;z-index:2}
+.ig-bar{display:flex;align-items:center;gap:10px;padding:12px 14px;border-top:1px solid var(--line);min-width:0}
+.ig-num{font-family:var(--osd);font-size:20px;line-height:1;background:var(--red);color:#fff;padding:3px 7px;flex:none}
+.ig-bar .label{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ig-link{font-family:var(--display);font-weight:800;font-size:11px;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;color:var(--paper);flex:none}
+.ig-link:hover{color:var(--red-hot)}
+.ig-fallback{position:absolute;inset:0;display:grid;place-content:center;gap:12px;text-align:center;text-decoration:none;color:var(--paper);padding:24px}
+.ig-fallback b{font-family:var(--display);font-weight:900;font-size:20px;text-transform:uppercase;line-height:1.05}
+.ig-fallback svg{width:42px;height:42px;justify-self:center;color:var(--dust)}
+.ig-follow{display:grid;place-content:center;gap:16px;text-align:center;text-decoration:none;border:2px dashed var(--line);padding:28px;transition:border-color .2s,background .2s}
 .ig-follow:hover{border-color:var(--red);background:var(--night)}
 .ig-follow b{font-family:var(--display);font-weight:900;font-size:clamp(24px,2.6vw,32px);text-transform:uppercase;line-height:1}
 .ig-follow b span{color:var(--red-hot)}
@@ -703,8 +714,23 @@ a:hover .thumb .tag{animation:glitch .45s steps(2) 1}
       var posts=(d.posts||[]).slice(0,8),acc=d.account||'urbex_en_moto';
       if(!posts.length)return;
       reelIg.innerHTML=posts.map(function(u,i){
-        return '<div class="ig-card" data-n="#'+String(i+1).padStart(2,'0')+'"><blockquote class="instagram-media" data-instgrm-permalink="'+esc(u)+'?utm_source=ig_embed" data-instgrm-version="14"><a class="ig-fallback" href="'+esc(u)+'" target="_blank" rel="noopener">'+igIcon+'<b>Ver publicación</b><span class="label">en Instagram</span></a></blockquote></div>';
+        var n='#'+String(i+1).padStart(2,'0');
+        return '<div class="ig-card"><div class="ig-media"><blockquote class="instagram-media" data-instgrm-permalink="'+esc(u)+'?utm_source=ig_embed" data-instgrm-version="14"><a class="ig-fallback" href="'+esc(u)+'" target="_blank" rel="noopener">'+igIcon+'<b>Ver publicación</b><span class="label">en Instagram</span></a></blockquote><a class="ig-go" href="'+esc(u)+'" target="_blank" rel="noopener" aria-label="Ver publicación '+n+' en Instagram"></a></div><div class="ig-bar"><span class="ig-num">'+n+'</span><span class="label">@'+esc(acc)+'</span><a class="ig-link" href="'+esc(u)+'" target="_blank" rel="noopener">Ver ↗</a></div></div>';
       }).join('')+'<a class="ig-follow" href="https://www.instagram.com/'+esc(acc)+'/" target="_blank" rel="noopener"><span class="label">Más fotos y vídeos</span><b>Síguenos <span>en Instagram →</span></b><span class="label">@'+esc(acc)+'</span></a>';
+      /* recorta cada publicación a un cuadrado: solo la foto, sin la cabecera ni el pie blancos */
+      var HEAD=54,FOOT=130;
+      function fit(){
+        [].forEach.call(reelIg.querySelectorAll('.ig-media'),function(m){
+          var f=m.querySelector('iframe'); if(!f)return;
+          var W=m.clientWidth,h=f.offsetHeight; if(!W||h<HEAD+FOOT+80)return;
+          var media=h-HEAD-FOOT,s=1,off;
+          if(media<W){s=W/media;off=HEAD*s;}else{off=HEAD+(media-W)/2;}
+          f.style.transform='translateY('+(-off).toFixed(1)+'px) scale('+s.toFixed(4)+')';
+          m.classList.add('ready');
+        });
+      }
+      var tries=0,iv=setInterval(function(){fit();if(++tries>40)clearInterval(iv);},400);
+      window.addEventListener('resize',fit);
       sec.hidden=false;
       var loaded=false;
       function loadEmbeds(){

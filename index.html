@@ -609,7 +609,7 @@ a:hover .thumb .tag{animation:glitch .45s steps(2) 1}
   function reveal(root){
     var sel='.head h2, .head .side, .head > p, .feature, .grid > *, .reel > *, .bike, .sign, .contact .wrap > *, .big';
     var els=[].slice.call((root||document).querySelectorAll(sel)).filter(function(el){
-      return !el.classList.contains('rv') && el.getBoundingClientRect().top>window.innerHeight*0.92 && !el.closest('.hero');
+      return !el.classList.contains('rv') && !el.closest('.hero');
     });
     els.forEach(function(el){
       var sib=el.parentElement?[].indexOf.call(el.parentElement.children,el):0;
@@ -619,7 +619,7 @@ a:hover .thumb .tag{animation:glitch .45s steps(2) 1}
     });
   }
   var io=new IntersectionObserver(function(es){
-    es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+    es.forEach(function(e){e.target.classList.toggle('in',e.isIntersecting);});
   },{rootMargin:'0px 0px -8% 0px'});
   reveal();
   /* las tarjetas de vídeo llegan después de cargar videos.json */

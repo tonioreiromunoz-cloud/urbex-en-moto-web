@@ -245,6 +245,55 @@ footer a:hover{color:var(--paper)}
   .tapes{height:96px;margin-top:-48px}
   .tape{font-size:12px}
 }
+
+/* ===== MOVIMIENTO ===== */
+header.top{transition:background .25s,border-color .25s,transform .35s cubic-bezier(.2,.7,.2,1)}
+header.top.hide{transform:translateY(-100%)}
+.stamp{transition:transform .25s}
+.feature:hover .stamp{transform:rotate(-7deg) scale(1.06)}
+.sign{transform-origin:50% -10px}
+.sign:hover{animation:swing 1.1s ease-in-out}
+@keyframes swing{0%{transform:rotate(0)}20%{transform:rotate(3.5deg)}45%{transform:rotate(-2.5deg)}70%{transform:rotate(1.2deg)}100%{transform:rotate(0)}}
+.thumb .tag{transition:transform .2s}
+a:hover .thumb .tag{animation:glitch .45s steps(2) 1}
+@keyframes glitch{0%{transform:translate(0)}20%{transform:translate(-3px,1px);text-shadow:2px 0 var(--red-hot),-2px 0 #3cf}40%{transform:translate(3px,-1px)}60%{transform:translate(-1px,0);text-shadow:-2px 0 var(--red-hot),2px 0 #3cf}80%{transform:translate(1px,1px)}100%{transform:translate(0);text-shadow:none}}
+.hero .bg.flick{filter:saturate(.7) contrast(1.08) brightness(.45)}
+.big{will-change:transform}
+@media (prefers-reduced-motion:no-preference){
+  /* encendido de videocámara */
+  .hero .bg{animation:crt 1.1s cubic-bezier(.2,.8,.2,1) both;scale:1;animation-name:crt,kb;animation-duration:1.1s,32s;animation-delay:0s,1.1s;animation-iteration-count:1,infinite;animation-direction:normal,alternate;animation-timing-function:cubic-bezier(.2,.8,.2,1),ease-in-out;animation-fill-mode:backwards,none}
+  @keyframes crt{0%{transform:scale(1,.003);filter:brightness(8) saturate(0)}35%{transform:scale(1,.003);filter:brightness(8) saturate(0)}60%{transform:scale(1,1);filter:brightness(2.2) saturate(.3)}100%{transform:scale(1,1);filter:saturate(.7) contrast(1.08)}}
+  @keyframes kb{from{scale:1}to{scale:1.09}}
+  .osd i{animation:corner .7s .5s cubic-bezier(.2,.8,.2,1) both}
+  .osd i:nth-child(1){--cx:-18px;--cy:-18px}.osd i:nth-child(2){--cx:18px;--cy:-18px}.osd i:nth-child(3){--cx:-18px;--cy:18px}.osd i:nth-child(4){--cx:18px;--cy:18px}
+  @keyframes corner{from{opacity:0;transform:translate(var(--cx),var(--cy))}to{opacity:1;transform:none}}
+  .osd .rec,.osd .bat,.osd .mode,.osd .time{animation:osdIn .4s steps(3) both}
+  .osd .rec{animation-delay:.9s}.osd .bat{animation-delay:1s}.osd .mode{animation-delay:1.1s}.osd .time{animation-delay:1.2s}
+  @keyframes osdIn{from{opacity:0}to{opacity:1}}
+  .hero .eyebrow{animation:up .7s .75s cubic-bezier(.2,.8,.2,1) both}
+  .hero h1 span{animation:wipe .9s cubic-bezier(.7,0,.2,1) both}
+  .hero h1 .w{animation-delay:.85s}.hero h1 .r{animation-delay:1s}
+  @keyframes wipe{from{clip-path:inset(0 0 100% 0);transform:translateY(40%)}to{clip-path:inset(-20% -10% -20% -10%);transform:none}}
+  .hero .tagline{animation:up .7s 1.2s cubic-bezier(.2,.8,.2,1) both}
+  .hero .lead{animation:up .7s 1.3s cubic-bezier(.2,.8,.2,1) both}
+  .hero .ctas{animation:up .7s 1.4s cubic-bezier(.2,.8,.2,1) both}
+  .hero .latest{animation:slideIn .9s 1.5s cubic-bezier(.2,.8,.2,1) both}
+  @keyframes up{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+  @keyframes slideIn{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:none}}
+  .tapes .tape.a{animation:tapeA .8s 1.6s cubic-bezier(.2,.8,.2,1) both}
+  .tapes .tape.b{animation:tapeB .8s 1.75s cubic-bezier(.2,.8,.2,1) both}
+  @keyframes tapeA{from{transform:translateX(-110%) rotate(-2.2deg)}to{transform:rotate(-2.2deg)}}
+  @keyframes tapeB{from{transform:translateX(110%) rotate(1.6deg)}to{transform:rotate(1.6deg)}}
+  /* aparición al hacer scroll */
+  .rv{opacity:0;transform:translateY(34px);transition:opacity .8s cubic-bezier(.2,.8,.2,1),transform .8s cubic-bezier(.2,.8,.2,1);transition-delay:var(--d,0s)}
+  .rv.in{opacity:1;transform:none}
+  .head h2.rv{transform:none;clip-path:inset(0 0 100% 0);transition:clip-path 1s cubic-bezier(.7,0,.2,1),opacity .2s}
+  .head h2.rv.in{clip-path:inset(-20% -5% -20% -5%)}
+  .sign.rv{transform:translateY(-60px) rotate(-6deg)}
+  .sign.rv.in{transform:none;animation:swing 1.4s var(--d,0s) ease-in-out}
+  .bike.rv{transform:translateY(40px) scale(.98)}
+  .bike.rv.in{transform:none}
+}
 </style>
 </head>
 <body>
@@ -424,7 +473,7 @@ footer a:hover{color:var(--paper)}
   /* linterna: sigue al cursor; en móvil hace un barrido automático */
   var hero=document.getElementById('hero');
   var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if(window.matchMedia('(hover: hover)').matches){
+  if(reduce&&window.matchMedia('(hover: hover)').matches){
     hero.addEventListener('pointermove',function(e){
       var r=hero.getBoundingClientRect();
       hero.classList.remove('sweep');
@@ -510,6 +559,84 @@ footer a:hover{color:var(--paper)}
       document.getElementById('shorts').hidden=false;
     }
   }).catch(function(){grid.innerHTML='';document.getElementById('feed-error').hidden=false;});
+})();
+</script>
+
+<script>
+/* MOVIMIENTO: linterna con inercia y parpadeo, cabecera que se esconde, apariciones al hacer scroll y parallax del pie */
+(function(){
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce)return;
+  var hero=document.getElementById('hero'),bg=document.getElementById('hero-bg'),head=document.getElementById('top');
+
+  /* linterna con inercia */
+  if(window.matchMedia('(hover: hover)').matches){
+    var tx=68,ty=42,cx=68,cy=42,active=false;
+    hero.addEventListener('pointermove',function(e){
+      var r=hero.getBoundingClientRect();
+      tx=(e.clientX-r.left)/r.width*100; ty=(e.clientY-r.top)/r.height*100;
+      if(!active){active=true;hero.classList.remove('sweep');}
+    });
+    (function ease(){
+      requestAnimationFrame(ease);
+      if(!active)return;
+      cx+=(tx-cx)*0.09; cy+=(ty-cy)*0.09;
+      hero.style.setProperty('--fx',cx.toFixed(2)+'%');
+      hero.style.setProperty('--fy',cy.toFixed(2)+'%');
+    })();
+  }
+
+  /* la linterna falla de vez en cuando */
+  function flicker(){
+    var n=0,times=[60,90,50,140];
+    (function blink(){
+      bg.classList.toggle('flick');
+      if(++n<times.length)setTimeout(blink,times[n]);else bg.classList.remove('flick');
+    })();
+    setTimeout(flicker,7000+Math.random()*9000);
+  }
+  setTimeout(flicker,5000);
+
+  /* cabecera: se esconde al bajar y vuelve al subir */
+  var lastY=window.scrollY;
+  window.addEventListener('scroll',function(){
+    var y=window.scrollY;
+    head.classList.toggle('hide',y>lastY&&y>hero.offsetHeight*0.6);
+    lastY=y;
+  },{passive:true});
+
+  /* apariciones al hacer scroll (solo lo que aún no está en pantalla) */
+  function reveal(root){
+    var sel='.head h2, .head .side, .head > p, .feature, .grid > *, .reel > *, .bike, .sign, .contact .wrap > *, .big';
+    var els=[].slice.call((root||document).querySelectorAll(sel)).filter(function(el){
+      return !el.classList.contains('rv') && el.getBoundingClientRect().top>window.innerHeight*0.92 && !el.closest('.hero');
+    });
+    els.forEach(function(el){
+      var sib=el.parentElement?[].indexOf.call(el.parentElement.children,el):0;
+      el.style.setProperty('--d',(Math.min(sib,6)*0.08)+'s');
+      el.classList.add('rv');
+      io.observe(el);
+    });
+  }
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+  },{rootMargin:'0px 0px -8% 0px'});
+  reveal();
+  /* las tarjetas de vídeo llegan después de cargar videos.json */
+  ['grid','feature','reel'].forEach(function(id){
+    var el=document.getElementById(id);
+    if(el)new MutationObserver(function(){reveal(el.parentElement);}).observe(el,{childList:true});
+  });
+
+  /* parallax: pie gigante y cintas */
+  var big=document.querySelector('.big'),tapes=document.querySelector('.tapes');
+  function par(){
+    var vh=window.innerHeight;
+    if(big){var r=big.getBoundingClientRect();if(r.top<vh&&r.bottom>0){var p=(vh-r.top)/(vh+r.height);big.style.transform='translateX('+(-p*12).toFixed(2)+'%)';}}
+    if(tapes){var t=tapes.getBoundingClientRect();if(t.top<vh&&t.bottom>0){tapes.style.transform='translateY('+((t.top-vh/2)*-0.06).toFixed(1)+'px)';}}
+  }
+  window.addEventListener('scroll',function(){requestAnimationFrame(par);},{passive:true});
+  par();
 })();
 </script>
 </body>

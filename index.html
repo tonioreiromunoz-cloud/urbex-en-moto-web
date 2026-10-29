@@ -21,7 +21,7 @@
 <meta name="twitter:description" content="Exploración urbana, rutas y aventura sobre dos ruedas.">
 <meta name="twitter:image" content="https://i.ytimg.com/vi/Jn9xcEM_pt4/maxresdefault.jpg">
 <link rel="apple-touch-icon" href="https://yt3.googleusercontent.com/yfZkq6yJx0A-Vr_2VUnUTFDU1QEVvLqsmREG8cRS3WRrDpxpPQfcEGf7_pk-lTfcqZ0huaHCmA=s176-c-k-c0x00ffffff-no-rj">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Urbex en Moto","url":"https://urbexenmoto.com/","logo":"https://yt3.googleusercontent.com/yfZkq6yJx0A-Vr_2VUnUTFDU1QEVvLqsmREG8cRS3WRrDpxpPQfcEGf7_pk-lTfcqZ0huaHCmA=s176-c-k-c0x00ffffff-no-rj","description":"Canal de exploración urbana, rutas y aventura sobre dos ruedas.","email":"akkuhytito@gmail.com","sameAs":["https://www.youtube.com/@UrbexenMotoTyJ"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Urbex en Moto","url":"https://urbexenmoto.com/","logo":"https://yt3.googleusercontent.com/yfZkq6yJx0A-Vr_2VUnUTFDU1QEVvLqsmREG8cRS3WRrDpxpPQfcEGf7_pk-lTfcqZ0huaHCmA=s176-c-k-c0x00ffffff-no-rj","description":"Canal de exploración urbana, rutas y aventura sobre dos ruedas.","email":"akkuhytito@gmail.com","sameAs":["https://www.youtube.com/@UrbexenMotoTyJ","https://www.instagram.com/urbex_en_moto/"]}</script>
 <meta name="theme-color" content="#0d0c0c">
 <link rel="icon" href="https://yt3.googleusercontent.com/yfZkq6yJx0A-Vr_2VUnUTFDU1QEVvLqsmREG8cRS3WRrDpxpPQfcEGf7_pk-lTfcqZ0huaHCmA=s176-c-k-c0x00ffffff-no-rj">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -45,7 +45,7 @@
 }
 *{box-sizing:border-box}
 [hidden]{display:none!important}
-html{scroll-behavior:smooth;background:var(--ink)}
+html{scroll-behavior:smooth;background:var(--ink);overflow-x:clip}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 body{margin:0;background:var(--ink);color:var(--paper);font-family:var(--body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 img{max-width:100%;display:block}
@@ -122,9 +122,10 @@ nav a.sub:hover{background:var(--red-hot);color:#fff}
 .tagline{font-family:var(--display);font-weight:800;font-size:clamp(17px,2vw,22px);text-transform:uppercase;letter-spacing:.06em;margin:28px 0 14px}
 .lead{max-width:46ch;margin:0 0 30px;color:var(--paper);opacity:.82}
 .ctas{display:flex;gap:12px;flex-wrap:wrap}
-.latest{display:grid;gap:12px;text-decoration:none;background:rgba(13,12,12,.72);border:1px solid rgba(237,230,218,.14);padding:14px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);transition:border-color .2s,transform .2s}
+.hero .wrap > *{min-width:0}
+.latest{display:grid;gap:12px;min-width:0;text-decoration:none;background:rgba(13,12,12,.72);border:1px solid rgba(237,230,218,.14);padding:14px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);transition:border-color .2s,transform .2s}
 .latest:hover{border-color:var(--red);transform:translateY(-3px)}
-.latest .lt{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.latest .lt{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
 .latest .dot{display:inline-flex;align-items:center;gap:8px;color:var(--red-hot)}
 .latest .dot::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--red-hot);animation:blink 1.4s steps(1) infinite}
 .latest h3{font-family:var(--display);font-weight:800;font-size:18px;line-height:1.15}
@@ -299,6 +300,24 @@ body.lock{overflow:hidden}
 @keyframes pop{from{opacity:0;transform:scale(.96) translateY(14px)}to{opacity:1;transform:none}}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 
+/* ===== INSTAGRAM ===== */
+.ig-sec{overflow:hidden}
+.ig-handle{font-family:var(--osd);font-size:30px;color:var(--tape);line-height:1;text-decoration:none}
+.ig-handle:hover{color:var(--paper)}
+.ig-reel{display:grid;grid-auto-flow:column;grid-auto-columns:min(340px,84vw);gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 2px 24px;scrollbar-width:none;align-items:start}
+.ig-reel::-webkit-scrollbar{display:none}
+.ig-card{scroll-snap-align:start;min-width:0;position:relative;background:var(--night);border:1px solid var(--line);padding:10px}
+.ig-card::before{content:attr(data-n);position:absolute;top:-12px;left:12px;z-index:2;font-family:var(--osd);font-size:20px;line-height:1;background:var(--red);color:#fff;padding:3px 8px}
+.ig-card blockquote.instagram-media{margin:0!important;min-width:0!important;width:100%!important;max-width:100%!important;border:0!important;box-shadow:none!important;background:var(--panel)!important;border-radius:4px!important}
+.ig-card iframe{min-width:0!important;max-width:100%!important;width:100%!important;border-radius:4px!important;background:#fff}
+.ig-fallback{display:grid;place-content:center;gap:12px;text-align:center;aspect-ratio:4/5;text-decoration:none;color:var(--paper);padding:24px}
+.ig-fallback b{font-family:var(--display);font-weight:900;font-size:22px;text-transform:uppercase;line-height:1.05}
+.ig-fallback svg{width:46px;height:46px;justify-self:center}
+.ig-follow{display:grid;place-content:center;gap:16px;text-align:center;text-decoration:none;border:2px dashed var(--line);min-height:420px;padding:28px;transition:border-color .2s,background .2s}
+.ig-follow:hover{border-color:var(--red);background:var(--night)}
+.ig-follow b{font-family:var(--display);font-weight:900;font-size:clamp(24px,2.6vw,32px);text-transform:uppercase;line-height:1}
+.ig-follow b span{color:var(--red-hot)}
+
 /* ===== MOVIMIENTO ===== */
 header.top{transition:background .25s,border-color .25s,transform .35s cubic-bezier(.2,.7,.2,1)}
 header.top.hide{transform:translateY(-100%)}
@@ -357,6 +376,7 @@ a:hover .thumb .tag{animation:glitch .45s steps(2) 1}
     <nav aria-label="Principal"><ul>
       <li><a href="#expedientes">Exploraciones</a></li>
       <li><a href="#shorts">Shorts</a></li>
+      <li><a href="#instagram">Instagram</a></li>
       <li><a href="#motos">Motos</a></li>
       <li><a href="#codigo">Código</a></li>
       <li><a href="#contacto">Contacto</a></li>
@@ -432,6 +452,19 @@ a:hover .thumb .tag{animation:glitch .45s steps(2) 1}
         </div>
       </div>
       <div class="strip"><div class="reel" id="reel"></div></div>
+    </div>
+  </section>
+
+  <section id="instagram" class="ig-sec" hidden>
+    <div class="wrap">
+      <div class="head">
+        <h2>Diario de <span class="r">ruta</span></h2>
+        <div class="side">
+          <a class="ig-handle" href="https://www.instagram.com/urbex_en_moto/" target="_blank" rel="noopener">@urbex_en_moto</a>
+          <div class="arrows"><button type="button" id="ig-prev" aria-label="Publicaciones anteriores">←</button><button type="button" id="ig-next" aria-label="Más publicaciones">→</button></div>
+        </div>
+      </div>
+      <div class="ig-reel" id="ig-reel"></div>
     </div>
   </section>
 
@@ -516,6 +549,7 @@ a:hover .thumb .tag{animation:glitch .45s steps(2) 1}
       <ul>
         <li><a class="label" href="https://www.youtube.com/@UrbexenMotoTyJ" target="_blank" rel="noopener">YouTube</a></li>
         <li><a class="label" href="https://www.youtube.com/@UrbexenMotoTyJ/shorts" target="_blank" rel="noopener">Shorts</a></li>
+        <li><a class="label" href="https://www.instagram.com/urbex_en_moto/" target="_blank" rel="noopener">Instagram</a></li>
         <li><a class="label" href="#top">Volver arriba ↑</a></li>
       </ul>
     </div>
@@ -661,6 +695,34 @@ a:hover .thumb .tag{animation:glitch .45s steps(2) 1}
     if(e.key==='Tab'){e.preventDefault();document.getElementById(document.activeElement.id==='player-x'?'player-yt':'player-x').focus();}
   });
 
+  /* Instagram: publicaciones elegidas en instagram.json, con el embebido oficial */
+  (function(){
+    var reelIg=document.getElementById('ig-reel'),sec=document.getElementById('instagram');
+    var igIcon='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor"/></svg>';
+    fetch('instagram.json',{cache:'no-store'}).then(function(r){if(!r.ok)throw r;return r.json();}).then(function(d){
+      var posts=(d.posts||[]).slice(0,8),acc=d.account||'urbex_en_moto';
+      if(!posts.length)return;
+      reelIg.innerHTML=posts.map(function(u,i){
+        return '<div class="ig-card" data-n="#'+String(i+1).padStart(2,'0')+'"><blockquote class="instagram-media" data-instgrm-permalink="'+esc(u)+'?utm_source=ig_embed" data-instgrm-version="14"><a class="ig-fallback" href="'+esc(u)+'" target="_blank" rel="noopener">'+igIcon+'<b>Ver publicación</b><span class="label">en Instagram</span></a></blockquote></div>';
+      }).join('')+'<a class="ig-follow" href="https://www.instagram.com/'+esc(acc)+'/" target="_blank" rel="noopener"><span class="label">Más fotos y vídeos</span><b>Síguenos <span>en Instagram →</span></b><span class="label">@'+esc(acc)+'</span></a>';
+      sec.hidden=false;
+      var loaded=false;
+      function loadEmbeds(){
+        if(loaded)return; loaded=true;
+        var sc=document.createElement('script'); sc.async=true; sc.src='https://www.instagram.com/embed.js';
+        sc.onload=function(){if(window.instgrm)window.instgrm.Embeds.process();};
+        document.body.appendChild(sc);
+      }
+      if('IntersectionObserver' in window){
+        var o=new IntersectionObserver(function(es){if(es[0].isIntersecting){o.disconnect();loadEmbeds();}},{rootMargin:'600px'});
+        o.observe(sec);
+      } else loadEmbeds();
+    }).catch(function(){});
+    function stepIg(dir){reelIg.scrollBy({left:dir*reelIg.clientWidth*0.8,behavior:reduce?'auto':'smooth'});}
+    document.getElementById('ig-prev').addEventListener('click',function(){stepIg(-1);});
+    document.getElementById('ig-next').addEventListener('click',function(){stepIg(1);});
+  })();
+
   var grid=document.getElementById('grid');
   grid.innerHTML=Array(6).fill('<div class="vid"><div class="thumb skeleton"></div></div>').join('');
   fetch('videos.json',{cache:'no-store'}).then(function(r){if(!r.ok)throw r;return r.json();}).then(function(data){
@@ -740,7 +802,7 @@ a:hover .thumb .tag{animation:glitch .45s steps(2) 1}
 
   /* apariciones al hacer scroll (solo lo que aún no está en pantalla) */
   function reveal(root){
-    var sel='.head h2, .head .side, .head > p, .feature, .grid > *, .reel > *, .bike, .sign, .contact .wrap > *, .big, .stat';
+    var sel='.head h2, .head .side, .head > p, .feature, .grid > *, .reel > *, .bike, .sign, .contact .wrap > *, .big, .stat, .ig-reel > *';
     var els=[].slice.call((root||document).querySelectorAll(sel)).filter(function(el){
       return !el.classList.contains('rv') && !el.closest('.hero');
     });
@@ -756,7 +818,7 @@ a:hover .thumb .tag{animation:glitch .45s steps(2) 1}
   },{rootMargin:'0px 0px -8% 0px'});
   reveal();
   /* las tarjetas de vídeo llegan después de cargar videos.json */
-  ['grid','feature','reel'].forEach(function(id){
+  ['grid','feature','reel','ig-reel'].forEach(function(id){
     var el=document.getElementById(id);
     if(el)new MutationObserver(function(){reveal(el.parentElement);}).observe(el,{childList:true});
   });

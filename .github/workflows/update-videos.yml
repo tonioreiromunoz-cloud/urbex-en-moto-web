@@ -1,0 +1,30 @@
+name: Actualizar vídeos
+
+on:
+  schedule:
+    - cron: "17 * * * *"   # cada hora, en el minuto 17
+  workflow_dispatch:        # botón para lanzarlo a mano desde la pestaña Actions
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Leer el feed del canal
+        run: python3 scripts/update_videos.py
+
+      - name: Guardar cambios
+        run: |
+          if git diff --quiet -- videos.json; then
+            echo "No hay vídeos nuevos."
+            exit 0
+          fi
+          git config user.name "urbex-bot"
+          git config user.email "urbex-bot@users.noreply.github.com"
+          git add videos.json
+          git commit -m "Vídeos actualizados desde YouTube"
+          git push

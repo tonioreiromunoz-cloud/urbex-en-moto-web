@@ -2,241 +2,357 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Urbex en Moto</title>
-<meta name="description" content="Urbex en Moto: exploración, rutas y aventura sobre dos ruedas. Lugares abandonados, carreteras perdidas y rincones olvidados.">
+<meta name="description" content="Urbex en Moto: exploración urbana, rutas y aventura sobre dos ruedas. Lugares abandonados, carreteras perdidas y rincones olvidados.">
 <meta property="og:title" content="Urbex en Moto">
 <meta property="og:description" content="Explorando lo que otros olvidaron.">
 <meta property="og:image" content="https://i.ytimg.com/vi/Jn9xcEM_pt4/maxresdefault.jpg">
-<meta name="theme-color" content="#131212">
+<meta name="theme-color" content="#0d0c0c">
 <link rel="icon" href="https://yt3.googleusercontent.com/yfZkq6yJx0A-Vr_2VUnUTFDU1QEVvLqsmREG8cRS3WRrDpxpPQfcEGf7_pk-lTfcqZ0huaHCmA=s176-c-k-c0x00ffffff-no-rj">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800;900&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=VT323&display=swap">
 <style>
-/* Layout: la identidad del canal (carbón, rojo, blanco roto, casco bicolor) — portada con la miniatura de la central como fondo, cuadrícula de vídeos reales, motos y contacto. Tema oscuro único, igual que el canal. */
+/* Concepto: entrar con linterna. Portada a oscuras que se ilumina con el cursor, visor de videocámara grabando,
+   cinta de precaución, expedientes de cada exploración y señales de peligro para el código urbex. Tema oscuro único. */
+@property --fx{syntax:'<percentage>';inherits:true;initial-value:68%}
+@property --fy{syntax:'<percentage>';inherits:true;initial-value:42%}
 :root{
-  --bg:#131212; --panel:#1c1a1a; --line:#2e2a29;
-  --paper:#ede6da; --muted:#a39a92;
-  --red:#c9302c; --red-hot:#e0423d; --pack:#f1c232;
+  --ink:#0d0c0c; --night:#141212; --panel:#1b1919; --line:#2c2827;
+  --paper:#ede6da; --dust:#a1978e; --mute:#6f6761;
+  --red:#cf2f2a; --red-hot:#ff4a3f; --tape:#f2c230;
   --display:"Montserrat","Arial Black","Helvetica Neue",Arial,sans-serif;
   --body:"Barlow","Helvetica Neue",Arial,sans-serif;
   --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --osd:"VT323","IBM Plex Mono",ui-monospace,monospace;
+  --gut:max(20px,env(safe-area-inset-left,0px));
   color-scheme:dark;
 }
 *{box-sizing:border-box}
-html,body{background:var(--bg)}
-body{color:var(--paper);font-family:var(--body);font-size:17px;line-height:1.6}
-.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+html{scroll-behavior:smooth;background:var(--ink)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--ink);color:var(--paper);font-family:var(--body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
 a{color:inherit}
-:focus-visible{outline:2px solid var(--red-hot);outline-offset:3px}
-h1,h2,h3{font-family:var(--display);font-weight:800;line-height:1;margin:0;text-wrap:balance;text-transform:uppercase}
-.label{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
-.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--display);font-weight:700;font-size:14px;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;padding:14px 24px;border-radius:999px;border:2px solid var(--paper);color:var(--paper);transition:background .15s,color .15s,border-color .15s}
-.btn:hover{background:var(--paper);color:var(--bg)}
+:focus-visible{outline:2px solid var(--tape);outline-offset:3px}
+.wrap{max-width:1240px;margin:0 auto;padding-left:var(--gut);padding-right:max(20px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);margin:0;line-height:.95;text-wrap:balance;text-transform:uppercase}
+.label{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--dust)}
+.r{color:var(--red)}
+
+/* grano de película sobre toda la página */
+body::after{content:"";position:fixed;inset:-50%;z-index:100;pointer-events:none;opacity:.07;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation:grain 1s steps(6) infinite}
+@keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-3%,2%)}40%{transform:translate(2%,-3%)}60%{transform:translate(-2%,-1%)}80%{transform:translate(3%,3%)}100%{transform:translate(0,0)}}
+@media (prefers-reduced-motion:reduce){body::after{animation:none}}
+
+/* botones */
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--display);font-weight:800;font-size:13px;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;padding:15px 24px;border:2px solid var(--paper);color:var(--paper);background:transparent;cursor:pointer;transition:background .15s,color .15s,border-color .15s,transform .15s}
+.btn:hover{background:var(--paper);color:var(--ink)}
 .btn.red{background:var(--red);border-color:var(--red);color:#fff}
-.btn.red:hover{background:var(--red-hot);border-color:var(--red-hot);color:#fff}
+.btn.red:hover{background:var(--red-hot);border-color:var(--red-hot)}
+.btn:active{transform:translateY(1px)}
 
-/* barra superior */
-header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
-header.top .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:12px;flex-wrap:wrap}
+/* cabecera */
+header.top{position:fixed;top:0;left:0;right:0;z-index:50;padding-top:env(safe-area-inset-top,0px);transition:background .25s,border-color .25s;border-bottom:1px solid transparent}
+header.top.solid{background:rgba(13,12,12,.86);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-color:var(--line)}
+header.top .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:14px}
 .brand{display:flex;align-items:center;gap:12px;text-decoration:none}
-.brand img{width:44px;height:44px;border-radius:50%;display:block}
-.brand b{font-family:var(--display);font-weight:800;font-size:18px;text-transform:uppercase;line-height:1}
+.brand img{width:42px;height:42px;border-radius:50%}
+.brand b{font-family:var(--display);font-weight:900;font-size:17px;text-transform:uppercase;line-height:1;letter-spacing:.02em}
 .brand b span{color:var(--red-hot)}
-nav ul{display:flex;gap:24px;list-style:none;margin:0;padding:0;flex-wrap:wrap}
-nav a{font-family:var(--display);font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:var(--muted)}
+nav ul{display:flex;gap:26px;list-style:none;margin:0;padding:0;align-items:center}
+nav a{font-family:var(--display);font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:var(--dust);transition:color .15s}
 nav a:hover{color:var(--paper)}
+nav a.sub{color:#fff;background:var(--red);padding:9px 14px}
+nav a.sub:hover{background:var(--red-hot);color:#fff}
 
-/* portada */
-.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
-.hero .bgimg{position:absolute;inset:0;background:url(https://i.ytimg.com/vi/Jn9xcEM_pt4/maxresdefault.jpg) center 30%/cover no-repeat;filter:saturate(.75) blur(1.5px);transform:scale(1.04)}
-.hero::after{content:"";position:absolute;inset:0;background:
-  linear-gradient(90deg,var(--bg) 0%,color-mix(in srgb,var(--bg) 80%,transparent) 42%,color-mix(in srgb,var(--bg) 25%,transparent) 100%),
-  linear-gradient(0deg,var(--bg) 0%,transparent 40%)}
-.hero .wrap{position:relative;z-index:1;padding-block:96px 72px;display:grid;gap:28px}
-.hero h1{font-size:clamp(68px,13vw,168px);font-weight:900;letter-spacing:-.01em;line-height:.9}
-.hero h1 .w{color:var(--paper);display:block}
-.hero h1 .r{color:var(--red);display:block}
-.tagline{font-family:var(--display);font-weight:700;font-size:clamp(18px,2.4vw,24px);text-transform:uppercase;letter-spacing:.04em;margin:0}
-.hero p.lead{max-width:44ch;margin:0;color:var(--paper);opacity:.88}
+/* PORTADA: linterna */
+.hero{position:relative;min-height:clamp(600px,96vh,980px);display:grid;align-items:end;overflow:hidden;isolation:isolate;--fx:68%;--fy:42%}
+.hero .bg{position:absolute;inset:-2%;z-index:-3;background:#111 url(https://i.ytimg.com/vi/Jn9xcEM_pt4/maxresdefault.jpg) center 35%/cover no-repeat;filter:saturate(.7) contrast(1.08)}
+.hero .dark{position:absolute;inset:0;z-index:-2;pointer-events:none;
+  background:radial-gradient(circle at var(--fx) var(--fy),rgba(10,9,9,0) 0,rgba(10,9,9,.35) 110px,rgba(10,9,9,.88) 300px,rgba(10,9,9,.96) 520px)}
+.hero .fade{position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(0deg,var(--ink) 0%,rgba(13,12,12,.55) 28%,transparent 55%),linear-gradient(90deg,rgba(13,12,12,.75) 0%,transparent 55%)}
+.hero.sweep{animation:sweep 14s ease-in-out infinite alternate}
+@keyframes sweep{0%{--fx:72%;--fy:38%}35%{--fx:52%;--fy:30%}70%{--fx:82%;--fy:55%}100%{--fx:62%;--fy:46%}}
+@media (prefers-reduced-motion:reduce){.hero.sweep{animation:none}}
+
+/* visor de videocámara */
+.osd{position:absolute;inset:clamp(76px,10vh,104px) clamp(14px,3vw,36px) clamp(14px,3vw,36px);pointer-events:none;font-family:var(--osd);font-size:clamp(20px,2.2vw,28px);color:rgba(255,255,255,.88);text-shadow:0 0 6px rgba(0,0,0,.6);letter-spacing:.04em}
+.osd i{position:absolute;width:34px;height:34px;border:2px solid rgba(255,255,255,.7)}
+.osd i:nth-child(1){top:0;left:0;border-right:0;border-bottom:0}
+.osd i:nth-child(2){top:0;right:0;border-left:0;border-bottom:0}
+.osd i:nth-child(3){bottom:0;left:0;border-right:0;border-top:0}
+.osd i:nth-child(4){bottom:0;right:0;border-left:0;border-top:0}
+.osd .rec{position:absolute;top:10px;left:48px;display:flex;align-items:center;gap:8px}
+.osd .rec::before{content:"";width:13px;height:13px;border-radius:50%;background:var(--red-hot);box-shadow:0 0 10px var(--red-hot);animation:blink 1.1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+@media (prefers-reduced-motion:reduce){.osd .rec::before{animation:none}}
+.osd .bat{position:absolute;top:10px;right:48px;display:flex;align-items:center;gap:8px}
+.osd .bat b{display:inline-block;width:34px;height:15px;border:2px solid currentColor;position:relative}
+.osd .bat b::before{content:"";position:absolute;inset:2px 9px 2px 2px;background:currentColor}
+.osd .bat b::after{content:"";position:absolute;right:-6px;top:3px;width:3px;height:6px;background:currentColor}
+.osd .time{position:absolute;bottom:8px;right:48px;text-align:right}
+.osd .mode{position:absolute;bottom:8px;left:48px}
+
+.hero .wrap{width:100%;padding-block:150px clamp(64px,10vh,110px);display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,.9fr);gap:48px;align-items:end}
+.hero h1{font-weight:900;font-size:clamp(64px,10.5vw,170px);white-space:nowrap;letter-spacing:-.025em;line-height:.84}
+.hero h1 span{display:block}
+.hero h1 .w{color:var(--paper)}
+.hero h1 .r{color:var(--red);text-shadow:0 0 40px rgba(207,47,42,.35)}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;margin-bottom:22px}
+.eyebrow::before{content:"";width:28px;height:2px;background:var(--red)}
+.tagline{font-family:var(--display);font-weight:800;font-size:clamp(17px,2vw,22px);text-transform:uppercase;letter-spacing:.06em;margin:28px 0 14px}
+.lead{max-width:46ch;margin:0 0 30px;color:var(--paper);opacity:.82}
 .ctas{display:flex;gap:12px;flex-wrap:wrap}
-.stats{display:flex;gap:40px;flex-wrap:wrap;margin-top:12px;padding-top:24px;border-top:1px solid color-mix(in srgb,var(--paper) 18%,transparent);max-width:640px}
-.stats div{display:grid;gap:2px}
-.stats b{font-family:var(--display);font-weight:800;font-size:32px;line-height:1;font-variant-numeric:tabular-nums}
-.stats b em{font-style:normal;color:var(--red-hot)}
+.latest{display:grid;gap:12px;text-decoration:none;background:rgba(13,12,12,.72);border:1px solid rgba(237,230,218,.14);padding:14px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);transition:border-color .2s,transform .2s}
+.latest:hover{border-color:var(--red);transform:translateY(-3px)}
+.latest .lt{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.latest .dot{display:inline-flex;align-items:center;gap:8px;color:var(--red-hot)}
+.latest .dot::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--red-hot);animation:blink 1.4s steps(1) infinite}
+.latest h3{font-family:var(--display);font-weight:800;font-size:18px;line-height:1.15}
+.latest .ph{aspect-ratio:16/9;background:var(--panel) center/cover no-repeat}
 
-/* cinta */
-.tape{background:var(--pack);color:#141212;font-family:var(--mono);font-weight:500;font-size:13px;letter-spacing:.2em;text-transform:uppercase;white-space:nowrap;overflow:hidden;padding-block:8px}
-.tape span{display:inline-block;animation:slide 45s linear infinite}
+/* cinta de precaución */
+.tapes{position:relative;height:120px;margin-top:-60px;z-index:5;pointer-events:none;overflow:hidden}
+.tape{position:absolute;left:-5%;right:-5%;background:var(--tape);color:#141212;font-family:var(--display);font-weight:900;font-size:15px;letter-spacing:.24em;text-transform:uppercase;white-space:nowrap;overflow:hidden;padding-block:10px;box-shadow:0 8px 24px rgba(0,0,0,.5);
+  background-image:repeating-linear-gradient(-45deg,transparent 0 22px,rgba(0,0,0,.07) 22px 44px)}
+.tape.a{top:28px;transform:rotate(-2.2deg)}
+.tape.b{top:50px;transform:rotate(1.6deg);background-color:#e8b623;opacity:.96}
+.tape span{display:inline-block;animation:slide 60s linear infinite}
+.tape.b span{animation-direction:reverse;animation-duration:75s}
 @keyframes slide{to{transform:translateX(-50%)}}
 @media (prefers-reduced-motion:reduce){.tape span{animation:none}}
 
-section{padding-block:88px}
-.head{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:36px}
-.head h2,.h2{font-size:clamp(40px,6vw,68px)}
-h2 .r{color:var(--red)}
+section{padding-block:110px;position:relative}
+.head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:44px}
+.head h2{font-weight:900;font-size:clamp(46px,7vw,92px);letter-spacing:-.02em}
+.head .side{display:grid;gap:10px;justify-items:end;text-align:right}
+.count{font-family:var(--osd);font-size:30px;color:var(--tape);line-height:1}
 
-/* destacado */
-.feature{display:grid;grid-template-columns:1.35fr 1fr;gap:40px;align-items:center;text-decoration:none;margin-bottom:56px}
-.feature .thumb{border-radius:14px}
-.feature h3{font-size:clamp(28px,3.6vw,44px);margin:10px 0 14px}
-.feature p{color:var(--muted);margin:0 0 20px;max-width:42ch}
-.chip{display:inline-block;background:var(--red);color:#fff;font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:4px 10px;border-radius:4px}
-
-/* vídeos */
-.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:36px 28px}
-.vid{display:grid;gap:12px;align-content:start;text-decoration:none;min-width:0}
-.thumb{position:relative;aspect-ratio:16/9;max-width:100%;border-radius:12px;overflow:hidden;background:var(--panel)}
-.thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s}
-.thumb .dur{position:absolute;right:8px;bottom:8px;font-family:var(--mono);font-size:12px;font-weight:500;background:rgba(0,0,0,.85);color:#fff;padding:3px 7px;border-radius:4px}
-.thumb .play{position:absolute;inset:0;display:grid;place-items:center;opacity:0;transition:opacity .2s;background:rgba(0,0,0,.25)}
-.thumb .play i{width:64px;height:64px;border-radius:50%;background:var(--red);display:grid;place-items:center}
-.thumb .play i::before{content:"";border-left:18px solid #fff;border-top:11px solid transparent;border-bottom:11px solid transparent;margin-left:5px}
-a:hover .thumb img{transform:scale(1.04)}
+/* EXPEDIENTES */
+.feature{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:0;text-decoration:none;margin-bottom:64px;background:var(--panel);border:1px solid var(--line);transition:border-color .2s}
+.feature:hover{border-color:var(--red)}
+.feature .thumb{border:0}
+.feature .info{padding:clamp(24px,3vw,44px);display:grid;align-content:center;gap:14px;position:relative}
+.feature .info::before{content:"";position:absolute;top:0;left:clamp(24px,3vw,44px);width:64px;height:4px;background:var(--red)}
+.feature h3{font-weight:900;font-size:clamp(30px,3.6vw,52px);letter-spacing:-.01em}
+.feature p{margin:0;color:var(--dust);max-width:40ch}
+.stamp{display:inline-block;justify-self:start;font-family:var(--display);font-weight:900;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--red-hot);border:3px solid var(--red-hot);padding:6px 12px;transform:rotate(-4deg);opacity:.92}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:44px 28px}
+.vid{display:grid;gap:14px;align-content:start;text-decoration:none;min-width:0}
+.thumb{position:relative;aspect-ratio:16/9;max-width:100%;overflow:hidden;background:var(--panel);border:1px solid var(--line)}
+.thumb img{width:100%;height:100%;object-fit:cover;filter:grayscale(.55) contrast(1.05) brightness(.85);transition:filter .35s,transform .5s}
+.thumb::after{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(0,0,0,.18) 0 1px,transparent 1px 3px);opacity:.6;transition:opacity .3s}
+.thumb .tag{position:absolute;top:10px;left:10px;z-index:2;font-family:var(--osd);font-size:20px;line-height:1;background:rgba(0,0,0,.78);color:var(--paper);padding:4px 8px}
+.thumb .play{position:absolute;inset:0;z-index:2;display:grid;place-items:center;opacity:0;transition:opacity .25s}
+.thumb .play i{width:68px;height:68px;border-radius:50%;background:var(--red);display:grid;place-items:center;box-shadow:0 0 0 8px rgba(207,47,42,.25)}
+.thumb .play i::before{content:"";border-left:19px solid #fff;border-top:12px solid transparent;border-bottom:12px solid transparent;margin-left:5px}
+a:hover .thumb img,a:focus-visible .thumb img{filter:none;transform:scale(1.045)}
+a:hover .thumb::after,a:focus-visible .thumb::after{opacity:.15}
 a:hover .thumb .play,a:focus-visible .thumb .play{opacity:1}
+.vid h3{font-family:var(--body);text-transform:none;font-weight:600;font-size:19px;line-height:1.3;letter-spacing:0;transition:color .2s}
+.vid:hover h3{color:var(--red-hot)}
+.more{display:grid;place-content:center;gap:14px;text-align:center;text-decoration:none;border:2px dashed var(--line);padding:32px;min-height:200px;grid-column:span var(--span,1);transition:border-color .2s,background .2s}
+.more:hover{border-color:var(--red);background:var(--night)}
+.more b{font-family:var(--display);font-weight:900;font-size:clamp(22px,2.4vw,30px);text-transform:uppercase;line-height:1}
+.more b span{color:var(--red-hot)}
+.meta{display:flex;gap:16px;flex-wrap:wrap;font-variant-numeric:tabular-nums}
 @media (prefers-reduced-motion:reduce){.thumb img{transition:none}a:hover .thumb img{transform:none}}
-.vid h3{font-family:var(--body);text-transform:none;font-weight:600;font-size:18px;line-height:1.35}
-.meta{display:flex;gap:14px;flex-wrap:wrap;font-variant-numeric:tabular-nums}
-
-.stats b{font-size:clamp(22px,3vw,32px)}
-.shorts{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:16px}
-.short{display:grid;gap:10px;align-content:start;text-decoration:none;min-width:0}
-.short .thumb{aspect-ratio:9/16}
-.short h3{font-family:var(--body);text-transform:none;font-weight:600;font-size:15px;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .skeleton{background:linear-gradient(90deg,var(--panel),var(--line),var(--panel));background-size:200% 100%;animation:sk 1.4s infinite}
 @keyframes sk{to{background-position:-200% 0}}
-@media (prefers-reduced-motion:reduce){.skeleton{animation:none}}
-@media (max-width:900px){.shorts{grid-template-columns:repeat(3,minmax(0,1fr))}}
-@media (max-width:600px){.shorts{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
-/* motos */
-.band{background:var(--panel);border-block:1px solid var(--line)}
+/* SHORTS: tira de película */
+.shorts-sec{background:var(--night);border-block:1px solid var(--line);overflow:hidden}
+.strip{position:relative}
+.reel{display:grid;grid-auto-flow:column;grid-auto-columns:clamp(170px,19vw,230px);gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:26px 0 30px;scrollbar-width:none;
+  background:
+    repeating-linear-gradient(90deg,var(--paper) 0 10px,transparent 10px 26px) top 7px left 0/100% 8px no-repeat,
+    repeating-linear-gradient(90deg,var(--paper) 0 10px,transparent 10px 26px) bottom 9px left 0/100% 8px no-repeat}
+.reel::-webkit-scrollbar{display:none}
+.short{scroll-snap-align:start;display:grid;gap:10px;text-decoration:none;min-width:0}
+.short .thumb{aspect-ratio:9/16;border-radius:4px}
+.short h3{font-family:var(--body);text-transform:none;font-weight:600;font-size:15px;line-height:1.3;letter-spacing:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.short .views{position:absolute;bottom:10px;left:10px;z-index:2;font-family:var(--osd);font-size:20px;color:#fff;text-shadow:0 1px 4px #000}
+.arrows{display:flex;gap:10px}
+.arrows button{width:48px;height:48px;border:2px solid var(--paper);background:transparent;color:var(--paper);font-size:20px;cursor:pointer;transition:background .15s,color .15s}
+.arrows button:hover{background:var(--paper);color:var(--ink)}
+
+/* MOTOS */
 .bikes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px}
-.bike{border:1px solid var(--line);border-radius:14px;padding:28px;display:grid;gap:18px;background:var(--bg);position:relative;overflow:hidden}
-.bike::after{content:"";position:absolute;right:-30px;top:-30px;width:160px;height:160px;border-radius:50%;border:22px dashed color-mix(in srgb,var(--paper) 6%,transparent)}
-.bike .model{font-family:var(--display);font-weight:900;font-size:clamp(40px,5vw,56px);line-height:1;text-transform:uppercase}
-.bike .model small{display:block;font-size:14px;font-weight:700;letter-spacing:.14em;color:var(--red-hot);margin-bottom:8px}
-.spec{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
-.spec th,.spec td{text-align:left;padding:10px 0;border-top:1px solid var(--line);vertical-align:top}
-.spec th{font-family:var(--mono);font-weight:400;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);width:38%}
+.bike{position:relative;overflow:hidden;border:1px solid var(--line);background:var(--night);padding:clamp(26px,3vw,40px);display:grid;gap:26px;min-height:380px;align-content:space-between}
+.bike .tread{position:absolute;right:-40px;top:-10px;bottom:-10px;width:150px;opacity:.07;transform:rotate(8deg);
+  background:repeating-linear-gradient(135deg,var(--paper) 0 14px,transparent 14px 34px),repeating-linear-gradient(45deg,var(--paper) 0 14px,transparent 14px 34px);
+  background-size:75px 100%,75px 100%;background-position:0 0,75px 0;background-repeat:repeat-y}
+.bike .ghost{position:absolute;left:-6px;bottom:-26px;font-family:var(--display);font-weight:900;font-size:clamp(90px,12vw,170px);line-height:1;color:transparent;-webkit-text-stroke:1.5px rgba(237,230,218,.08);pointer-events:none;white-space:nowrap}
+.bike .who{display:flex;justify-content:space-between;gap:12px;position:relative}
+.bike .model{position:relative;font-family:var(--display);font-weight:900;font-size:clamp(46px,6vw,76px);line-height:.9;text-transform:uppercase;letter-spacing:-.02em}
+.bike .model small{display:block;font-size:14px;letter-spacing:.24em;color:var(--red-hot);margin-bottom:10px}
+.spec{position:relative;width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.spec th,.spec td{text-align:left;padding:11px 0;border-top:1px solid var(--line);vertical-align:top}
+.spec th{font-family:var(--mono);font-weight:400;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--dust);width:36%}
 
-/* código */
-.rules{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
-.rule{display:grid;gap:10px;align-content:start;border-top:3px solid var(--red);padding-top:18px}
-.rule h3{font-size:19px;line-height:1.2}
-.rule p{margin:0;color:var(--muted);font-size:16px}
-.note{margin-top:28px}
+/* CÓDIGO: señales */
+.code-sec{background:var(--night);border-block:1px solid var(--line)}
+.signs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px}
+.sign{position:relative;padding:12px;background:repeating-linear-gradient(-45deg,var(--tape) 0 14px,#141212 14px 28px)}
+.sign .in{background:var(--tape);color:#141212;padding:24px 20px 22px;display:grid;gap:12px;height:100%;align-content:start}
+.sign svg{width:54px;height:54px}
+.sign h3{font-weight:900;font-size:20px;line-height:1.05;letter-spacing:.01em}
+.sign p{margin:0;font-size:15.5px;line-height:1.45;font-weight:500}
+.sign .n{position:absolute;top:22px;right:24px;font-family:var(--osd);font-size:26px;color:#141212;opacity:.55}
 
-/* contacto */
-.cta{display:grid;grid-template-columns:1.2fr .8fr;gap:48px;align-items:start}
-.cta p{max-width:50ch}
-.box{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:24px;display:grid;gap:12px}
-.mail{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-.mail code{font-family:var(--mono);font-size:15px;user-select:all;background:var(--panel);padding:9px 12px;border-radius:8px;border:1px solid var(--line);word-break:break-all}
-.mail button{font-family:var(--display);font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.08em;padding:10px 14px;border-radius:999px;border:2px solid var(--paper);background:transparent;color:var(--paper);cursor:pointer}
-.mail button:hover{background:var(--paper);color:var(--bg)}
+/* CONTACTO */
+.contact{overflow:hidden}
+.contact .wrap{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:56px;align-items:center}
+.contact h2{font-weight:900;font-size:clamp(44px,6.4vw,86px);letter-spacing:-.02em;margin-bottom:24px}
+.contact p{max-width:50ch;color:var(--paper);opacity:.85}
+.box{border:1px solid var(--line);background:var(--night);padding:28px;display:grid;gap:14px;position:relative}
+.box::before{content:"";position:absolute;inset:-1px -1px auto -1px;height:6px;background:repeating-linear-gradient(-45deg,var(--tape) 0 10px,#141212 10px 20px)}
+.mail{display:flex;gap:8px;align-items:stretch;flex-wrap:wrap}
+.mail code{flex:1 1 220px;font-family:var(--mono);font-size:16px;user-select:all;background:var(--ink);padding:12px 14px;border:1px solid var(--line);word-break:break-all}
+.mail button{font-family:var(--display);font-weight:800;font-size:12px;text-transform:uppercase;letter-spacing:.1em;padding:0 18px;min-height:46px;border:2px solid var(--paper);background:transparent;color:var(--paper);cursor:pointer}
+.mail button:hover{background:var(--paper);color:var(--ink)}
 
-footer .wrap{padding-block:32px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
-footer ul{display:flex;gap:22px;list-style:none;margin:0;padding:0;flex-wrap:wrap}
+/* PIE */
+footer{border-top:1px solid var(--line);overflow:hidden}
+.big{font-family:var(--display);font-weight:900;font-size:clamp(54px,13.5vw,210px);line-height:.82;letter-spacing:-.03em;text-transform:uppercase;color:transparent;-webkit-text-stroke:1.5px rgba(237,230,218,.16);white-space:nowrap;padding-top:48px;user-select:none}
+.big span{-webkit-text-stroke-color:rgba(207,47,42,.45)}
+footer .row{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding-block:28px 34px}
+footer ul{display:flex;gap:24px;list-style:none;margin:0;padding:0;flex-wrap:wrap}
 footer a{text-decoration:none}
 footer a:hover{color:var(--paper)}
 
-@media (max-width:900px){
+@media (max-width:980px){
+  .more{grid-column:auto}
+  .hero .wrap{grid-template-columns:1fr;gap:36px}
+  .latest{max-width:420px}
   .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .rules{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .feature,.cta{grid-template-columns:1fr;gap:28px}
-  section{padding-block:64px}
+  .signs{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .feature,.contact .wrap{grid-template-columns:1fr}
+  section{padding-block:80px}
 }
-@media (max-width:600px){
-  .grid,.bikes,.rules{grid-template-columns:1fr}
-  nav{display:none}
-  .hero .wrap{padding-block:64px 48px}
-  .stats{gap:28px}
-  .bike{padding:22px}
+@media (max-width:700px){
+  nav li:not(.keep){display:none}
+  .osd .mode,.osd .bat{display:none}
+  .osd .time{font-size:20px}
+  .grid,.bikes,.signs{grid-template-columns:1fr}
+  .head .side{justify-items:start;text-align:left}
+  .hero .wrap{padding-block:130px 70px}
+  .bike{min-height:0}
+  .tapes{height:96px;margin-top:-48px}
+  .tape{font-size:12px}
 }
 </style>
-
 </head>
 <body>
-<header class="top">
+
+<header class="top" id="top">
   <div class="wrap">
-    <a class="brand" href="#inicio"><img src="https://yt3.googleusercontent.com/yfZkq6yJx0A-Vr_2VUnUTFDU1QEVvLqsmREG8cRS3WRrDpxpPQfcEGf7_pk-lTfcqZ0huaHCmA=s176-c-k-c0x00ffffff-no-rj" alt="Logo de Urbex en Moto"><b>Urbex <span>en Moto</span></b></a>
+    <a class="brand" href="#inicio"><img src="https://yt3.googleusercontent.com/yfZkq6yJx0A-Vr_2VUnUTFDU1QEVvLqsmREG8cRS3WRrDpxpPQfcEGf7_pk-lTfcqZ0huaHCmA=s176-c-k-c0x00ffffff-no-rj" alt="Logo de Urbex en Moto" width="42" height="42"><b>Urbex <span>en Moto</span></b></a>
     <nav aria-label="Principal"><ul>
-      <li><a href="#videos">Vídeos</a></li>
-      <li><a href="#motos">Las motos</a></li>
+      <li><a href="#expedientes">Exploraciones</a></li>
+      <li><a href="#shorts">Shorts</a></li>
+      <li><a href="#motos">Motos</a></li>
       <li><a href="#codigo">Código</a></li>
       <li><a href="#contacto">Contacto</a></li>
+      <li class="keep"><a class="sub" href="https://www.youtube.com/@UrbexenMotoTyJ?sub_confirmation=1" target="_blank" rel="noopener">Suscríbete</a></li>
     </ul></nav>
   </div>
 </header>
 
 <main id="inicio">
-  <div class="hero">
-    <div class="bgimg" aria-hidden="true"></div>
-    <div class="wrap">
-      <p class="label">Exploración · Rutas · Aventura sobre dos ruedas</p>
-      <h1><span class="w">Urbex</span><span class="r">en Moto</span></h1>
-      <p class="tagline">Explorando lo que otros olvidaron</p>
-      <p class="lead">Recorremos lugares abandonados, carreteras perdidas y rincones olvidados con nuestras dos motos, y os lo enseñamos todo tal y como lo encontramos.</p>
-      <div class="ctas">
-        <a class="btn red" href="https://www.youtube.com/@UrbexenMotoTyJ?sub_confirmation=1" target="_blank" rel="noopener">Suscríbete</a>
-        <a class="btn" id="last-btn" href="https://www.youtube.com/@UrbexenMotoTyJ/videos" target="_blank" rel="noopener">▶ Último vídeo</a>
-      </div>
-      <div class="stats" aria-label="El canal">
-        <div><b id="last-ago">Reciente</b><span class="label">Último vídeo</span></div>
-        <div><b>2<em>×</em></b><span class="label">Motos</span></div>
-        <div><b>CB650R · NX500</b><span class="label">Las máquinas</span></div>
-      </div>
+  <section class="hero sweep" id="hero" style="padding:0">
+    <div class="bg" id="hero-bg" aria-hidden="true"></div>
+    <div class="dark" aria-hidden="true"></div>
+    <div class="fade" aria-hidden="true"></div>
+    <div class="osd" aria-hidden="true">
+      <i></i><i></i><i></i><i></i>
+      <span class="rec">REC</span>
+      <span class="bat"><b></b></span>
+      <span class="mode">SP ▸ NIGHT</span>
+      <span class="time" id="clock">--.--.---- --:--:--</span>
     </div>
+    <div class="wrap">
+      <div>
+        <p class="label eyebrow">Exploración urbana · Rutas · Dos ruedas</p>
+        <h1><span class="w">Urbex</span><span class="r">en Moto</span></h1>
+        <p class="tagline">Explorando lo que otros olvidaron</p>
+        <p class="lead">Fábricas, pueblos vacíos, túneles y centrales abandonadas. Llegamos en moto, entramos con linterna y os lo enseñamos tal y como lo encontramos.</p>
+        <div class="ctas">
+          <a class="btn red" href="https://www.youtube.com/@UrbexenMotoTyJ?sub_confirmation=1" target="_blank" rel="noopener">Suscríbete al canal</a>
+          <a class="btn" href="#expedientes">Ver exploraciones ↓</a>
+        </div>
+      </div>
+      <a class="latest" id="latest" href="https://www.youtube.com/@UrbexenMotoTyJ/videos" target="_blank" rel="noopener">
+        <div class="lt"><span class="label dot">Último vídeo</span><span class="label" id="latest-ago"></span></div>
+        <div class="ph" id="latest-ph"></div>
+        <h3 id="latest-title">Cargando la última exploración…</h3>
+      </a>
+    </div>
+  </section>
+
+  <div class="tapes" aria-hidden="true">
+    <div class="tape a"><span>Prohibido el paso ✕ Urbex en Moto ✕ Peligro de derrumbe ✕ Explorando lo que otros olvidaron ✕ Prohibido el paso ✕ Urbex en Moto ✕ Peligro de derrumbe ✕ Explorando lo que otros olvidaron ✕ Prohibido el paso ✕ Urbex en Moto ✕ Peligro de derrumbe ✕ Explorando lo que otros olvidaron ✕&nbsp;</span></div>
+    <div class="tape b"><span>No pasar ✕ Zona abandonada ✕ No pasar ✕ Zona abandonada ✕ No pasar ✕ Zona abandonada ✕ No pasar ✕ Zona abandonada ✕ No pasar ✕ Zona abandonada ✕ No pasar ✕ Zona abandonada ✕ No pasar ✕ Zona abandonada ✕ No pasar ✕ Zona abandonada ✕&nbsp;</span></div>
   </div>
 
-  <div class="tape" aria-hidden="true"><span>Explorando lo que otros olvidaron ✕ Urbex en Moto ✕ Explorando lo que otros olvidaron ✕ Urbex en Moto ✕ Explorando lo que otros olvidaron ✕ Urbex en Moto ✕ Explorando lo que otros olvidaron ✕ Urbex en Moto ✕ Explorando lo que otros olvidaron ✕ Urbex en Moto ✕ Explorando lo que otros olvidaron ✕ Urbex en Moto ✕&nbsp;</span></div>
-
-  <section id="videos">
+  <section id="expedientes">
     <div class="wrap">
       <div class="head">
-        <h2>Últimas <span class="r">exploraciones</span></h2>
-        <a class="btn" href="https://www.youtube.com/@UrbexenMotoTyJ/videos" target="_blank" rel="noopener">Todos los vídeos →</a>
+        <h2>Expedientes <span class="r">abiertos</span></h2>
+        <div class="side">
+          <span class="count" id="count-videos">— vídeos</span>
+          <a class="btn" href="https://www.youtube.com/@UrbexenMotoTyJ/videos" target="_blank" rel="noopener">Todos en YouTube →</a>
+        </div>
       </div>
-
       <div id="feature"></div>
       <div class="grid" id="grid" aria-live="polite"></div>
       <p class="label" id="feed-error" hidden>No se han podido cargar los vídeos. <a href="https://www.youtube.com/@UrbexenMotoTyJ/videos" target="_blank" rel="noopener">Verlos en YouTube →</a></p>
     </div>
   </section>
 
-  <section id="shorts" hidden>
+  <section id="shorts" class="shorts-sec" hidden>
     <div class="wrap">
       <div class="head">
-        <h2>Últimos <span class="r">Shorts</span></h2>
-        <a class="btn" href="https://www.youtube.com/@UrbexenMotoTyJ/shorts" target="_blank" rel="noopener">Todos los Shorts →</a>
+        <h2>Lo que <span class="r">grabamos</span></h2>
+        <div class="side">
+          <span class="count" id="count-shorts">— shorts</span>
+          <div class="arrows"><button type="button" id="prev" aria-label="Shorts anteriores">←</button><button type="button" id="next" aria-label="Más Shorts">→</button></div>
+        </div>
       </div>
-      <div class="shorts" id="shorts-grid"></div>
+      <div class="strip"><div class="reel" id="reel"></div></div>
     </div>
   </section>
 
-  <section id="motos" class="band">
+  <section id="motos">
     <div class="wrap">
       <div class="head">
-        <h2>Las <span class="r">motos</span></h2>
-        <p class="label">Dos ruedas, dos estilos</p>
+        <h2>Las <span class="r">máquinas</span></h2>
+        <p class="label">Dos motos, un mismo destino: donde acaba el mapa</p>
       </div>
       <div class="bikes">
         <article class="bike">
+          <div class="tread" aria-hidden="true"></div>
+          <div class="ghost" aria-hidden="true">CB650R</div>
+          <div class="who"><span class="label">Moto 01</span><span class="label">Naked</span></div>
           <div class="model"><small>Honda</small>CB650R</div>
           <table class="spec">
-            <tr><th scope="row">Tipo</th><td>Naked de cuatro cilindros</td></tr>
-            <tr><th scope="row">Motor</th><td>649 cc, cuatro en línea</td></tr>
-            <tr><th scope="row">Terreno</th><td>Asfalto y carreteras de curvas</td></tr>
+            <tr><th scope="row">Motor</th><td>649 cc, cuatro cilindros en línea</td></tr>
+            <tr><th scope="row">Carácter</th><td>Rápida y ágil en carretera</td></tr>
+            <tr><th scope="row">Terreno</th><td>Asfalto y puertos de montaña</td></tr>
           </table>
         </article>
         <article class="bike">
+          <div class="tread" aria-hidden="true"></div>
+          <div class="ghost" aria-hidden="true">NX500</div>
+          <div class="who"><span class="label">Moto 02</span><span class="label">Trail</span></div>
           <div class="model"><small>Honda</small>NX500</div>
           <table class="spec">
-            <tr><th scope="row">Tipo</th><td>Trail ligera</td></tr>
             <tr><th scope="row">Motor</th><td>471 cc, bicilíndrico en paralelo</td></tr>
+            <tr><th scope="row">Carácter</th><td>Cómoda y resistente</td></tr>
             <tr><th scope="row">Terreno</th><td>Asfalto y pistas de tierra</td></tr>
           </table>
         </article>
@@ -244,25 +360,34 @@ footer a:hover{color:var(--paper)}
     </div>
   </section>
 
-  <section id="codigo">
+  <section id="codigo" class="code-sec">
     <div class="wrap">
       <div class="head">
         <h2>Código <span class="r">urbex</span></h2>
         <p class="label">Lo que respetamos en cada salida</p>
       </div>
-      <div class="rules">
-        <div class="rule"><h3>No damos ubicaciones</h3><p>Si un sitio se hace público, se llena de gente que no viene solo a mirar.</p></div>
-        <div class="rule"><h3>No forzamos nada</h3><p>Si hay que romper una puerta o un candado para entrar, nos damos la vuelta.</p></div>
-        <div class="rule"><h3>Solo fotos y vídeo</h3><p>No nos llevamos nada. El sitio queda igual que lo encontramos.</p></div>
-        <div class="rule"><h3>Nunca solos</h3><p>Siempre en pareja, con linterna, botiquín y alguien que sabe dónde estamos.</p></div>
+      <div class="signs">
+        <div class="sign"><div class="in"><span class="n">01</span>
+          <svg viewBox="0 0 48 48" fill="none" stroke="#141212" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M24 43s-13-13.2-13-23a13 13 0 0 1 26 0c0 9.8-13 23-13 23z"/><circle cx="24" cy="20" r="4.5"/><path d="M6 6l36 36"/></svg>
+          <h3>No damos ubicaciones</h3><p>Si un sitio se hace público, se llena de gente que no viene solo a mirar.</p></div></div>
+        <div class="sign"><div class="in"><span class="n">02</span>
+          <svg viewBox="0 0 48 48" fill="none" stroke="#141212" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="10" y="21" width="28" height="21" rx="2"/><path d="M16 21v-6a8 8 0 0 1 16 0v6"/><path d="M24 29v6"/></svg>
+          <h3>No forzamos nada</h3><p>Si hay que romper una puerta o un candado para entrar, nos damos la vuelta.</p></div></div>
+        <div class="sign"><div class="in"><span class="n">03</span>
+          <svg viewBox="0 0 48 48" fill="none" stroke="#141212" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16h8l4-6h12l4 6h8v24H6z"/><circle cx="24" cy="27" r="7"/></svg>
+          <h3>Solo fotos y vídeo</h3><p>No nos llevamos nada. El sitio queda igual que lo encontramos.</p></div></div>
+        <div class="sign"><div class="in"><span class="n">04</span>
+          <svg viewBox="0 0 48 48" fill="none" stroke="#141212" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="16" cy="14" r="6"/><circle cx="33" cy="14" r="6"/><path d="M5 42v-6a9 9 0 0 1 18 0v6"/><path d="M24 42v-6a9 9 0 0 1 18 0v6"/></svg>
+          <h3>Nunca solos</h3><p>Siempre en pareja, con linterna, botiquín y alguien que sabe dónde estamos.</p></div></div>
       </div>
     </div>
   </section>
 
-  <section id="contacto" class="band">
-    <div class="wrap cta">
+  <section id="contacto" class="contact">
+    <div class="wrap">
       <div>
-        <h2 class="h2" style="margin-bottom:20px">¿Conoces un <span class="r">sitio olvidado?</span></h2>
+        <p class="label eyebrow">Contacto</p>
+        <h2>¿Conoces un <span class="r">sitio olvidado?</span></h2>
         <p>Una fábrica, un pueblo, una casa o un túnel que merezca una visita: escríbenos y lo estudiamos. Si vamos, nunca diremos dónde está.</p>
         <p>También estamos abiertos a colaboraciones con marcas de equipamiento de moto y de exploración.</p>
       </div>
@@ -277,58 +402,113 @@ footer a:hover{color:var(--paper)}
 
 <footer>
   <div class="wrap">
-    <span class="label">© 2026 Urbex en Moto</span>
-    <ul>
-      <li><a class="label" href="https://www.youtube.com/@UrbexenMotoTyJ" target="_blank" rel="noopener">YouTube</a></li>
-      <li><a class="label" href="https://www.youtube.com/@UrbexenMotoTyJ/shorts" target="_blank" rel="noopener">Shorts</a></li>
-    </ul>
+    <div class="big" aria-hidden="true">Urbex <span>en Moto</span></div>
+    <div class="row">
+      <span class="label">© <span id="year">2026</span> Urbex en Moto · Explorando lo que otros olvidaron</span>
+      <ul>
+        <li><a class="label" href="https://www.youtube.com/@UrbexenMotoTyJ" target="_blank" rel="noopener">YouTube</a></li>
+        <li><a class="label" href="https://www.youtube.com/@UrbexenMotoTyJ/shorts" target="_blank" rel="noopener">Shorts</a></li>
+        <li><a class="label" href="#top">Volver arriba ↑</a></li>
+      </ul>
+    </div>
   </div>
 </footer>
 
 <script>
-document.getElementById('copy').addEventListener('click',function(){
-  var el=document.getElementById('mail'),out=document.getElementById('copied');
-  function sel(){var r=document.createRange();r.selectNodeContents(el);var s=getSelection();s.removeAllRanges();s.addRange(r);out.textContent='Seleccionado: pulsa Ctrl+C';}
-  try{navigator.clipboard.writeText(el.textContent).then(function(){out.textContent='Copiado';},sel);}catch(e){sel();}
-});
-
 (function(){
+  /* cabecera sólida al hacer scroll */
+  var head=document.getElementById('top');
+  function onScroll(){head.classList.toggle('solid',window.scrollY>40);}
+  onScroll(); window.addEventListener('scroll',onScroll,{passive:true});
+
+  /* linterna: sigue al cursor; en móvil hace un barrido automático */
+  var hero=document.getElementById('hero');
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(window.matchMedia('(hover: hover)').matches){
+    hero.addEventListener('pointermove',function(e){
+      var r=hero.getBoundingClientRect();
+      hero.classList.remove('sweep');
+      hero.style.setProperty('--fx',((e.clientX-r.left)/r.width*100).toFixed(1)+'%');
+      hero.style.setProperty('--fy',((e.clientY-r.top)/r.height*100).toFixed(1)+'%');
+    });
+  }
+  if(reduce)hero.classList.remove('sweep');
+
+  /* reloj de la videocámara */
+  var clock=document.getElementById('clock');
+  function pad(n){return String(n).padStart(2,'0');}
+  function tick(){var d=new Date();clock.textContent=pad(d.getDate())+'.'+pad(d.getMonth()+1)+'.'+d.getFullYear()+'  '+pad(d.getHours())+':'+pad(d.getMinutes())+':'+pad(d.getSeconds());}
+  tick(); setInterval(tick,1000);
+  document.getElementById('year').textContent=new Date().getFullYear();
+
+  /* copiar correo */
+  document.getElementById('copy').addEventListener('click',function(){
+    var el=document.getElementById('mail'),out=document.getElementById('copied');
+    function sel(){var rg=document.createRange();rg.selectNodeContents(el);var s=getSelection();s.removeAllRanges();s.addRange(rg);out.textContent='Seleccionado: pulsa Ctrl+C';}
+    try{navigator.clipboard.writeText(el.textContent).then(function(){out.textContent='Copiado ✓';},sel);}catch(e){sel();}
+  });
+
+  /* flechas de la tira de Shorts */
+  var reel=document.getElementById('reel');
+  function step(dir){reel.scrollBy({left:dir*reel.clientWidth*0.8,behavior:reduce?'auto':'smooth'});}
+  document.getElementById('prev').addEventListener('click',function(){step(-1);});
+  document.getElementById('next').addEventListener('click',function(){step(1);});
+
+  /* vídeos desde videos.json */
   var rtf=new Intl.RelativeTimeFormat('es',{numeric:'auto'});
   var nf=new Intl.NumberFormat('es',{notation:'compact',maximumFractionDigits:1});
   function ago(iso){
     if(!iso)return '';
-    var s=(new Date(iso)-Date.now())/1000, u=[['year',31536000],['month',2592000],['week',604800],['day',86400],['hour',3600],['minute',60]];
+    var s=(new Date(iso)-Date.now())/1000,u=[['year',31536000],['month',2592000],['week',604800],['day',86400],['hour',3600],['minute',60]];
     for(var i=0;i<u.length;i++){if(Math.abs(s)>=u[i][1])return rtf.format(Math.round(s/u[i][1]),u[i][0]);}
     return 'ahora mismo';
   }
   function esc(t){var d=document.createElement('div');d.textContent=t||'';return d.innerHTML;}
-  function clean(t){return (t||'').replace(/[\u{1F300}-\u{1FAFF}\u2600-\u27BF\uFE0F]/gu,'').replace(/\s+/g,' ').trim();}
+  function clean(t){return (t||'').replace(/#[\p{L}\p{N}_]+/gu,'').replace(/[\u{1F300}-\u{1FAFF}☀-➿️​]/gu,'').replace(/\s+/g,' ').trim();}
   function thumb(v,q){return 'https://i.ytimg.com/vi/'+v.id+'/'+(q||'hqdefault')+'.jpg';}
-  function meta(v){return (v.views!=null?'<span class="label">'+nf.format(v.views)+' visualizaciones</span>':'')+'<span class="label">'+ago(v.published)+'</span>';}
+  function fallback(v){return ' onerror="this.onerror=null;this.src=\''+thumb(v)+'\'"';}
+  function exp(n){return 'EXP.'+String(n).padStart(3,'0');}
+  function views(v){return v.views!=null?nf.format(v.views)+' visualizaciones':'';}
+
   function card(v){
-    return '<a class="vid" href="'+esc(v.url)+'" target="_blank" rel="noopener"><div class="thumb"><img loading="lazy" src="'+thumb(v,'mqdefault')+'" alt=""><span class="play"><i></i></span></div><h3>'+esc(clean(v.title))+'</h3><div class="meta">'+meta(v)+'</div></a>';
-  }
-  function shortCard(v){
-    return '<a class="short" href="'+esc(v.url)+'" target="_blank" rel="noopener"><div class="thumb"><img loading="lazy" src="'+thumb(v,'oardefault')+'" onerror="this.onerror=null;this.src=\''+thumb(v)+'\'" alt=""><span class="play"><i></i></span></div><h3>'+esc(clean(v.title))+'</h3></a>';
+    return '<a class="vid" href="'+esc(v.url)+'" target="_blank" rel="noopener"><div class="thumb"><img loading="lazy" src="'+thumb(v,'mqdefault')+'" alt=""><span class="tag">'+exp(v.n)+'</span><span class="play"><i></i></span></div><h3>'+esc(clean(v.title))+'</h3><div class="meta"><span class="label">'+views(v)+'</span><span class="label">'+ago(v.published)+'</span></div></a>';
   }
   function feature(v){
-    var parts=clean(v.title).split(/\s*\/\/\s*/), main=parts[0], sub=parts.slice(1).join(' · ');
-    return '<a class="feature" href="'+esc(v.url)+'" target="_blank" rel="noopener"><div class="thumb"><img src="'+thumb(v,'maxresdefault')+'" onerror="this.onerror=null;this.src=\''+thumb(v)+'\'" alt=""><span class="play"><i></i></span></div><div><span class="chip">Último vídeo</span><h3>'+esc(main)+'</h3>'+(sub?'<p>'+esc(sub)+'</p>':'')+(v.description?'<p>'+esc(v.description)+'</p>':'')+'<span class="label">'+(v.views!=null?nf.format(v.views)+' visualizaciones · ':'')+ago(v.published)+'</span></div></a>';
+    var parts=clean(v.title).split(/\s*\/\/\s*/),main=parts[0],sub=parts.slice(1).join(' · ');
+    return '<a class="feature" href="'+esc(v.url)+'" target="_blank" rel="noopener"><div class="thumb"><img src="'+thumb(v,'maxresdefault')+'"'+fallback(v)+' alt=""><span class="tag">'+exp(v.n)+' · REC</span><span class="play"><i></i></span></div><div class="info"><span class="stamp">Nuevo expediente</span><h3>'+esc(main)+'</h3>'+(sub?'<p>'+esc(sub)+'</p>':'')+'<span class="label">'+[views(v),ago(v.published)].filter(Boolean).join(' · ')+'</span><span class="btn red" style="justify-self:start;margin-top:8px">▶ Ver ahora</span></div></a>';
   }
+  function shortCard(v){
+    return '<a class="short" href="'+esc(v.url)+'" target="_blank" rel="noopener"><div class="thumb"><img loading="lazy" src="'+thumb(v,'oardefault')+'"'+fallback(v)+' alt=""><span class="views">'+(v.views!=null?'▶ '+nf.format(v.views):'')+'</span><span class="play"><i></i></span></div><h3>'+esc(clean(v.title))+'</h3></a>';
+  }
+
   var grid=document.getElementById('grid');
   grid.innerHTML=Array(6).fill('<div class="vid"><div class="thumb skeleton"></div></div>').join('');
   fetch('videos.json',{cache:'no-store'}).then(function(r){if(!r.ok)throw r;return r.json();}).then(function(data){
-    var all=data.videos||[], longs=all.filter(function(v){return !v.short;}), shorts=all.filter(function(v){return v.short;});
+    var all=(data.videos||[]).slice().sort(function(a,b){return (b.published||'').localeCompare(a.published||'');});
+    var longs=all.filter(function(v){return !v.short;}),shorts=all.filter(function(v){return v.short;});
     if(!longs.length)throw new Error('vacío');
+    longs.forEach(function(v,i){v.n=longs.length-i;});
     var top=longs[0];
     document.getElementById('feature').innerHTML=feature(top);
-    grid.innerHTML=longs.slice(1,7).map(card).join('');
-    document.getElementById('last-ago').textContent=ago(top.published).replace(/^./,function(c){return c.toUpperCase();});
-    document.getElementById('last-btn').href=top.url;
-    var hero=document.querySelector('.hero .bgimg'); var im=new Image();
-    im.onload=function(){if(im.naturalWidth>200)hero.style.backgroundImage='url('+im.src+')';};
+    var rest=longs.slice(1,7),gap=(3-rest.length%3)%3;
+    grid.innerHTML=rest.map(card).join('')+(gap?'<a class="more" style="--span:'+gap+'" href="https://www.youtube.com/@UrbexenMotoTyJ/videos" target="_blank" rel="noopener"><span class="label">Archivo completo</span><b>Más expedientes <span>en YouTube →</span></b></a>':'');
+    document.getElementById('count-videos').textContent=longs.length+' vídeos';
+
+    var latest=document.getElementById('latest');
+    latest.href=top.url;
+    document.getElementById('latest-title').textContent=clean(top.title).split(/\s*\/\/\s*/)[0];
+    document.getElementById('latest-ago').textContent=ago(top.published);
+    document.getElementById('latest-ph').style.backgroundImage='url('+thumb(top,'mqdefault')+')';
+
+    var bg=document.getElementById('hero-bg'),im=new Image();
+    im.onload=function(){if(im.naturalWidth>200)bg.style.backgroundImage='url('+im.src+')';};
     im.src=thumb(top,'maxresdefault');
-    if(shorts.length){document.getElementById('shorts-grid').innerHTML=shorts.slice(0,6).map(shortCard).join('');document.getElementById('shorts').hidden=false;}
+
+    if(shorts.length){
+      reel.innerHTML=shorts.slice(0,16).map(shortCard).join('');
+      document.getElementById('count-shorts').textContent=shorts.length+' shorts';
+      document.getElementById('shorts').hidden=false;
+    }
   }).catch(function(){grid.innerHTML='';document.getElementById('feed-error').hidden=false;});
 })();
 </script>

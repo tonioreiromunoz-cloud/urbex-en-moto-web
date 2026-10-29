@@ -98,7 +98,7 @@ nav a.sub:hover{background:var(--red-hot);color:#fff}
 .osd .mode{position:absolute;bottom:8px;left:48px}
 
 .hero .wrap{width:100%;padding-block:150px clamp(64px,10vh,110px);display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,.9fr);gap:48px;align-items:end}
-.hero h1{font-weight:900;font-size:clamp(64px,10.5vw,170px);white-space:nowrap;letter-spacing:-.025em;line-height:.84}
+.hero h1{font-weight:900;font-size:clamp(60px,8.6vw,148px);white-space:nowrap;letter-spacing:-.025em;line-height:.84}
 .hero h1 span{display:block}
 .hero h1 .w{color:var(--paper)}
 .hero h1 .r{color:var(--red);text-shadow:0 0 40px rgba(207,47,42,.35)}
@@ -129,7 +129,7 @@ nav a.sub:hover{background:var(--red-hot);color:#fff}
 section{padding-block:110px;position:relative}
 .head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:44px}
 .head h2{font-weight:900;font-size:clamp(46px,7vw,92px);letter-spacing:-.02em}
-.head .side{display:grid;gap:10px;justify-items:end;text-align:right}
+.head .side{display:grid;gap:10px;justify-items:start}
 .count{font-family:var(--osd);font-size:30px;color:var(--tape);line-height:1}
 
 /* EXPEDIENTES */
@@ -478,7 +478,7 @@ footer a:hover{color:var(--paper)}
     return '<a class="feature" href="'+esc(v.url)+'" target="_blank" rel="noopener"><div class="thumb"><img src="'+thumb(v,'maxresdefault')+'"'+fallback(v)+' alt=""><span class="tag">'+exp(v.n)+' · REC</span><span class="play"><i></i></span></div><div class="info"><span class="stamp">Nuevo expediente</span><h3>'+esc(main)+'</h3>'+(sub?'<p>'+esc(sub)+'</p>':'')+'<span class="label">'+[views(v),ago(v.published)].filter(Boolean).join(' · ')+'</span><span class="btn red" style="justify-self:start;margin-top:8px">▶ Ver ahora</span></div></a>';
   }
   function shortCard(v){
-    return '<a class="short" href="'+esc(v.url)+'" target="_blank" rel="noopener"><div class="thumb"><img loading="lazy" src="'+thumb(v,'oardefault')+'"'+fallback(v)+' alt=""><span class="views">'+(v.views!=null?'▶ '+nf.format(v.views):'')+'</span><span class="play"><i></i></span></div><h3>'+esc(clean(v.title))+'</h3></a>';
+    return '<a class="short" href="'+esc(v.url)+'" target="_blank" rel="noopener"><div class="thumb"><img loading="lazy" src="'+thumb(v,'hqdefault')+'" alt=""><span class="views">'+(v.views!=null?'▶ '+nf.format(v.views):'')+'</span><span class="play"><i></i></span></div><h3>'+esc(clean(v.title))+'</h3></a>';
   }
 
   var grid=document.getElementById('grid');

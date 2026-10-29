@@ -8,7 +8,8 @@
       "published": "2026-10-24T18:00:12+00:00",
       "views": 1260,
       "short": true,
-      "description": "Pronto nuevo video en el canal!"
+      "description": "Pronto nuevo video en el canal!",
+      "checked": true
     },
     {
       "id": "ktJMkHLgVg4",
@@ -17,7 +18,8 @@
       "published": "2026-10-06T11:32:31+00:00",
       "views": 104,
       "short": true,
-      "description": "Video ya disponible!!!"
+      "description": "Video ya disponible!!!",
+      "checked": true
     },
     {
       "id": "yvj9Ds0qugo",
@@ -26,7 +28,8 @@
       "published": "2026-10-05T18:15:31+00:00",
       "views": 51,
       "short": true,
-      "description": "Video ya disponible!"
+      "description": "Video ya disponible!",
+      "checked": true
     },
     {
       "id": "8Qav7QGcHLA",
@@ -35,7 +38,8 @@
       "published": "2026-10-04T18:15:36+00:00",
       "views": 72,
       "short": true,
-      "description": "Video YA disponible!!!"
+      "description": "Video YA disponible!!!",
+      "checked": true
     },
     {
       "id": "Jn9xcEM_pt4",
@@ -44,7 +48,8 @@
       "published": "2026-10-03T13:00:07+00:00",
       "views": 548,
       "short": false,
-      "description": "El Valle Olvidado // CAPITULO 1: El Coloso De Hormigón ☢️🏭"
+      "description": "El Valle Olvidado // CAPITULO 1: El Coloso De Hormigón ☢️🏭",
+      "checked": true
     },
     {
       "id": "A7QB_XVB3ss",
@@ -53,7 +58,8 @@
       "published": "2026-10-03T11:00:04+00:00",
       "views": 1243,
       "short": true,
-      "description": "Video ya disponible!"
+      "description": "Video ya disponible!",
+      "checked": true
     },
     {
       "id": "TBqFj153iHQ",
@@ -62,7 +68,8 @@
       "published": "2026-10-02T18:25:50+00:00",
       "views": 1283,
       "short": true,
-      "description": "Video ya disponible!!!"
+      "description": "Video ya disponible!!!",
+      "checked": true
     },
     {
       "id": "40oeX-sRKd8",
@@ -71,7 +78,8 @@
       "published": "2026-10-02T12:10:52+00:00",
       "views": 1289,
       "short": true,
-      "description": "Vido ya disponible!"
+      "description": "Vido ya disponible!",
+      "checked": true
     },
     {
       "id": "OgvSn6qyXnM",
@@ -80,7 +88,8 @@
       "published": "2026-10-01T19:30:01+00:00",
       "views": 1429,
       "short": true,
-      "description": "Video ya disponible!"
+      "description": "Video ya disponible!",
+      "checked": true
     },
     {
       "id": "IpmYrjZUfFg",
@@ -89,7 +98,8 @@
       "published": "2026-10-01T10:45:07+00:00",
       "views": 1218,
       "short": true,
-      "description": "Video ya disponible!"
+      "description": "Video ya disponible!",
+      "checked": true
     },
     {
       "id": "20p2VOUUJM8",
@@ -98,7 +108,8 @@
       "published": "2026-09-30T17:30:05+00:00",
       "views": 1258,
       "short": true,
-      "description": "Video ya disponible!"
+      "description": "Video ya disponible!",
+      "checked": true
     },
     {
       "id": "C8RABa8IfaA",
@@ -107,7 +118,8 @@
       "published": "2026-09-30T11:00:34+00:00",
       "views": 555,
       "short": true,
-      "description": "Video ya disponible en el canal!"
+      "description": "Video ya disponible en el canal!",
+      "checked": true
     },
     {
       "id": "Qmf_RxO7gyY",
@@ -116,7 +128,8 @@
       "published": "2026-09-29T10:30:03+00:00",
       "views": 1286,
       "short": true,
-      "description": "Video ya disponible en el canal!!!!"
+      "description": "Video ya disponible en el canal!!!!",
+      "checked": true
     },
     {
       "id": "7zpVTCD_-RI",
@@ -125,7 +138,8 @@
       "published": "2026-09-28T17:30:21+00:00",
       "views": 622,
       "short": true,
-      "description": "Video ya disponible en el canal!"
+      "description": "Video ya disponible en el canal!",
+      "checked": true
     },
     {
       "id": "vrtfLyZktZQ",
@@ -134,7 +148,8 @@
       "published": "2026-09-27T17:30:28+00:00",
       "views": 432,
       "short": false,
-      "description": "El caminio de la Lujuria, 3 spots, 3 personas un video."
+      "description": "El caminio de la Lujuria, 3 spots, 3 personas un video.",
+      "checked": true
     },
     {
       "id": "LaicoKwsHwk",
@@ -144,37 +159,37 @@
       "views": 206,
       "short": false,
       "description": "",
-      "checked": false
+      "checked": true
     },
     {
       "id": "MjKAFR4tUcs",
-      "title": "La Musara",
+      "title": "Pasamos la NOCHE en el Pueblo Abandonado de LA MUSARA 🏚️",
       "url": "https://www.youtube.com/watch?v=MjKAFR4tUcs",
       "published": "2026-07-25T17:00:00+00:00",
       "views": 111,
       "short": false,
       "description": "",
-      "checked": false
+      "checked": true
     },
     {
       "id": "h9Rw1Ee-tEg",
-      "title": "Primera exploración urbex en moto | Parte 2",
+      "title": "Primera exploración de Urbex en Moto🏍️ | Parte 2",
       "url": "https://www.youtube.com/watch?v=h9Rw1Ee-tEg",
       "published": "2026-06-25T17:00:00+00:00",
       "views": 1700,
       "short": false,
       "description": "",
-      "checked": false
+      "checked": true
     },
     {
       "id": "ZSChiXWKgP4",
-      "title": "Primera exploración urbex en moto | Parte 1",
+      "title": "Primera exploración de Urbex en Moto🏍️ | Parte 1",
       "url": "https://www.youtube.com/watch?v=ZSChiXWKgP4",
       "published": "2026-05-25T17:00:00+00:00",
       "views": 368,
       "short": false,
       "description": "",
-      "checked": false
+      "checked": true
     }
   ]
 }

@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Urbex en Moto</title>
+<meta name="description" content="Urbex en Moto: exploración, rutas y aventura sobre dos ruedas. Lugares abandonados, carreteras perdidas y rincones olvidados.">
+<meta property="og:title" content="Urbex en Moto">
+<meta property="og:description" content="Explorando lo que otros olvidaron.">
+<meta property="og:image" content="https://i.ytimg.com/vi/Jn9xcEM_pt4/maxresdefault.jpg">
+<meta name="theme-color" content="#131212">
+<link rel="icon" href="https://yt3.googleusercontent.com/a8KZXoO14cnPaNmO2B7H9rBx7Rgx2gc6wkv1wQneYK8o_ExYCcPoxHjZoAh8byBJktHSL7Mh=s176-c-k-c0x00ffffff-no-rj">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Barlow:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: la identidad del canal (carbón, rojo, blanco roto, casco bicolor) — portada con la miniatura de la central como fondo, cuadrícula de vídeos reales, motos y contacto. Tema oscuro único, igual que el canal. */
+:root{
+  --bg:#131212; --panel:#1c1a1a; --line:#2e2a29;
+  --paper:#ede6da; --muted:#a39a92;
+  --red:#c9302c; --red-hot:#e0423d; --pack:#f1c232;
+  --display:"Montserrat","Arial Black","Helvetica Neue",Arial,sans-serif;
+  --body:"Barlow","Helvetica Neue",Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{background:var(--bg)}
+body{color:var(--paper);font-family:var(--body);font-size:17px;line-height:1.6}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--red-hot);outline-offset:3px}
+h1,h2,h3{font-family:var(--display);font-weight:800;line-height:1;margin:0;text-wrap:balance;text-transform:uppercase}
+.label{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--display);font-weight:700;font-size:14px;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;padding:14px 24px;border-radius:999px;border:2px solid var(--paper);color:var(--paper);transition:background .15s,color .15s,border-color .15s}
+.btn:hover{background:var(--paper);color:var(--bg)}
+.btn.red{background:var(--red);border-color:var(--red);color:#fff}
+.btn.red:hover{background:var(--red-hot);border-color:var(--red-hot);color:#fff}
+
+/* barra superior */
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+header.top .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:12px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brand img{width:44px;height:44px;border-radius:50%;display:block}
+.brand b{font-family:var(--display);font-weight:800;font-size:18px;text-transform:uppercase;line-height:1}
+.brand b span{color:var(--red-hot)}
+nav ul{display:flex;gap:24px;list-style:none;margin:0;padding:0;flex-wrap:wrap}
+nav a{font-family:var(--display);font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:var(--muted)}
+nav a:hover{color:var(--paper)}
+
+/* portada */
+.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+.hero .bgimg{position:absolute;inset:0;background:url(https://i.ytimg.com/vi/Jn9xcEM_pt4/maxresdefault.jpg) center 30%/cover no-repeat;filter:saturate(.75) blur(1.5px);transform:scale(1.04)}
+.hero::after{content:"";position:absolute;inset:0;background:
+  linear-gradient(90deg,var(--bg) 0%,color-mix(in srgb,var(--bg) 80%,transparent) 42%,color-mix(in srgb,var(--bg) 25%,transparent) 100%),
+  linear-gradient(0deg,var(--bg) 0%,transparent 40%)}
+.hero .wrap{position:relative;z-index:1;padding-block:96px 72px;display:grid;gap:28px}
+.hero h1{font-size:clamp(68px,13vw,168px);font-weight:900;letter-spacing:-.01em;line-height:.9}
+.hero h1 .w{color:var(--paper);display:block}
+.hero h1 .r{color:var(--red);display:block}
+.tagline{font-family:var(--display);font-weight:700;font-size:clamp(18px,2.4vw,24px);text-transform:uppercase;letter-spacing:.04em;margin:0}
+.hero p.lead{max-width:44ch;margin:0;color:var(--paper);opacity:.88}
+.ctas{display:flex;gap:12px;flex-wrap:wrap}
+.stats{display:flex;gap:40px;flex-wrap:wrap;margin-top:12px;padding-top:24px;border-top:1px solid color-mix(in srgb,var(--paper) 18%,transparent);max-width:640px}
+.stats div{display:grid;gap:2px}
+.stats b{font-family:var(--display);font-weight:800;font-size:32px;line-height:1;font-variant-numeric:tabular-nums}
+.stats b em{font-style:normal;color:var(--red-hot)}
+
+/* cinta */
+.tape{background:var(--pack);color:#141212;font-family:var(--mono);font-weight:500;font-size:13px;letter-spacing:.2em;text-transform:uppercase;white-space:nowrap;overflow:hidden;padding-block:8px}
+.tape span{display:inline-block;animation:slide 45s linear infinite}
+@keyframes slide{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.tape span{animation:none}}
+
+section{padding-block:88px}
+.head{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:36px}
+.head h2,.h2{font-size:clamp(40px,6vw,68px)}
+h2 .r{color:var(--red)}
+
+/* destacado */
+.feature{display:grid;grid-template-columns:1.35fr 1fr;gap:40px;align-items:center;text-decoration:none;margin-bottom:56px}
+.feature .thumb{border-radius:14px}
+.feature h3{font-size:clamp(28px,3.6vw,44px);margin:10px 0 14px}
+.feature p{color:var(--muted);margin:0 0 20px;max-width:42ch}
+.chip{display:inline-block;background:var(--red);color:#fff;font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:4px 10px;border-radius:4px}
+
+/* vídeos */
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:36px 28px}
+.vid{display:grid;gap:12px;align-content:start;text-decoration:none;min-width:0}
+.thumb{position:relative;aspect-ratio:16/9;max-width:100%;border-radius:12px;overflow:hidden;background:var(--panel)}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s}
+.thumb .dur{position:absolute;right:8px;bottom:8px;font-family:var(--mono);font-size:12px;font-weight:500;background:rgba(0,0,0,.85);color:#fff;padding:3px 7px;border-radius:4px}
+.thumb .play{position:absolute;inset:0;display:grid;place-items:center;opacity:0;transition:opacity .2s;background:rgba(0,0,0,.25)}
+.thumb .play i{width:64px;height:64px;border-radius:50%;background:var(--red);display:grid;place-items:center}
+.thumb .play i::before{content:"";border-left:18px solid #fff;border-top:11px solid transparent;border-bottom:11px solid transparent;margin-left:5px}
+a:hover .thumb img{transform:scale(1.04)}
+a:hover .thumb .play,a:focus-visible .thumb .play{opacity:1}
+@media (prefers-reduced-motion:reduce){.thumb img{transition:none}a:hover .thumb img{transform:none}}
+.vid h3{font-family:var(--body);text-transform:none;font-weight:600;font-size:18px;line-height:1.35}
+.meta{display:flex;gap:14px;flex-wrap:wrap;font-variant-numeric:tabular-nums}
+
+.stats b{font-size:clamp(22px,3vw,32px)}
+.shorts{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:16px}
+.short{display:grid;gap:10px;align-content:start;text-decoration:none;min-width:0}
+.short .thumb{aspect-ratio:9/16}
+.short h3{font-family:var(--body);text-transform:none;font-weight:600;font-size:15px;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.skeleton{background:linear-gradient(90deg,var(--panel),var(--line),var(--panel));background-size:200% 100%;animation:sk 1.4s infinite}
+@keyframes sk{to{background-position:-200% 0}}
+@media (prefers-reduced-motion:reduce){.skeleton{animation:none}}
+@media (max-width:900px){.shorts{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:600px){.shorts{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* motos */
+.band{background:var(--panel);border-block:1px solid var(--line)}
+.bikes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px}
+.bike{border:1px solid var(--line);border-radius:14px;padding:28px;display:grid;gap:18px;background:var(--bg);position:relative;overflow:hidden}
+.bike::after{content:"";position:absolute;right:-30px;top:-30px;width:160px;height:160px;border-radius:50%;border:22px dashed color-mix(in srgb,var(--paper) 6%,transparent)}
+.bike .model{font-family:var(--display);font-weight:900;font-size:clamp(40px,5vw,56px);line-height:1;text-transform:uppercase}
+.bike .model small{display:block;font-size:14px;font-weight:700;letter-spacing:.14em;color:var(--red-hot);margin-bottom:8px}
+.spec{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.spec th,.spec td{text-align:left;padding:10px 0;border-top:1px solid var(--line);vertical-align:top}
+.spec th{font-family:var(--mono);font-weight:400;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);width:38%}
+
+/* código */
+.rules{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
+.rule{display:grid;gap:10px;align-content:start;border-top:3px solid var(--red);padding-top:18px}
+.rule h3{font-size:19px;line-height:1.2}
+.rule p{margin:0;color:var(--muted);font-size:16px}
+.note{margin-top:28px}
+
+/* contacto */
+.cta{display:grid;grid-template-columns:1.2fr .8fr;gap:48px;align-items:start}
+.cta p{max-width:50ch}
+.box{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:24px;display:grid;gap:12px}
+.mail{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.mail code{font-family:var(--mono);font-size:15px;user-select:all;background:var(--panel);padding:9px 12px;border-radius:8px;border:1px solid var(--line);word-break:break-all}
+.mail button{font-family:var(--display);font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.08em;padding:10px 14px;border-radius:999px;border:2px solid var(--paper);background:transparent;color:var(--paper);cursor:pointer}
+.mail button:hover{background:var(--paper);color:var(--bg)}
+
+footer .wrap{padding-block:32px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+footer ul{display:flex;gap:22px;list-style:none;margin:0;padding:0;flex-wrap:wrap}
+footer a{text-decoration:none}
+footer a:hover{color:var(--paper)}
+
+@media (max-width:900px){
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .rules{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .feature,.cta{grid-template-columns:1fr;gap:28px}
+  section{padding-block:64px}
+}
+@media (max-width:600px){
+  .grid,.bikes,.rules{grid-template-columns:1fr}
+  nav{display:none}
+  .hero .wrap{padding-block:64px 48px}
+  .stats{gap:28px}
+  .bike{padding:22px}
+}
+</style>
+
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#inicio"><img src="https://yt3.googleusercontent.com/a8KZXoO14cnPaNmO2B7H9rBx7Rgx2gc6wkv1wQneYK8o_ExYCcPoxHjZoAh8byBJktHSL7Mh=s176-c-k-c0x00ffffff-no-rj" alt="Logo de Urbex en Moto"><b>Urbex <span>en Moto</span></b></a>
+    <nav aria-label="Principal"><ul>
+      <li><a href="#videos">Vídeos</a></li>
+      <li><a href="#motos">Las motos</a></li>
+      <li><a href="#codigo">Código</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul></nav>
+  </div>
+</header>
+
+<main id="inicio">
+  <div class="hero">
+    <div class="bgimg" aria-hidden="true"></div>
+    <div class="wrap">
+      <p class="label">Exploración · Rutas · Aventura sobre dos ruedas</p>
+      <h1><span class="w">Urbex</span><span class="r">en Moto</span></h1>
+      <p class="tagline">Explorando lo que otros olvidaron</p>
+      <p class="lead">Recorremos lugares abandonados, carreteras perdidas y rincones olvidados con nuestras dos motos, y os lo enseñamos todo tal y como lo encontramos.</p>
+      <div class="ctas">
+        <a class="btn red" href="https://www.youtube.com/@UrbexenMotoTyJ?sub_confirmation=1" target="_blank" rel="noopener">Suscríbete</a>
+        <a class="btn" id="last-btn" href="https://www.youtube.com/@UrbexenMotoTyJ/videos" target="_blank" rel="noopener">▶ Último vídeo</a>
+      </div>
+      <div class="stats" aria-label="El canal">
+        <div><b id="last-ago">Reciente</b><span class="label">Último vídeo</span></div>
+        <div><b>2<em>×</em></b><span class="label">Motos</span></div>
+        <div><b>CB650R · NX500</b><span class="label">Las máquinas</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tape" aria-hidden="true"><span>Explorando lo que otros olvidaron ✕ Urbex en Moto ✕ Explorando lo que otros olvidaron ✕ Urbex en Moto ✕ Explorando lo que otros olvidaron ✕ Urbex en Moto ✕ Explorando lo que otros olvidaron ✕ Urbex en Moto ✕ Explorando lo que otros olvidaron ✕ Urbex en Moto ✕ Explorando lo que otros olvidaron ✕ Urbex en Moto ✕&nbsp;</span></div>
+
+  <section id="videos">
+    <div class="wrap">
+      <div class="head">
+        <h2>Últimas <span class="r">exploraciones</span></h2>
+        <a class="btn" href="https://www.youtube.com/@UrbexenMotoTyJ/videos" target="_blank" rel="noopener">Todos los vídeos →</a>
+      </div>
+
+      <div id="feature"></div>
+      <div class="grid" id="grid" aria-live="polite"></div>
+      <p class="label" id="feed-error" hidden>No se han podido cargar los vídeos. <a href="https://www.youtube.com/@UrbexenMotoTyJ/videos" target="_blank" rel="noopener">Verlos en YouTube →</a></p>
+    </div>
+  </section>
+
+  <section id="shorts" hidden>
+    <div class="wrap">
+      <div class="head">
+        <h2>Últimos <span class="r">Shorts</span></h2>
+        <a class="btn" href="https://www.youtube.com/@UrbexenMotoTyJ/shorts" target="_blank" rel="noopener">Todos los Shorts →</a>
+      </div>
+      <div class="shorts" id="shorts-grid"></div>
+    </div>
+  </section>
+
+  <section id="motos" class="band">
+    <div class="wrap">
+      <div class="head">
+        <h2>Las <span class="r">motos</span></h2>
+        <p class="label">Dos ruedas, dos estilos</p>
+      </div>
+      <div class="bikes">
+        <article class="bike">
+          <div class="model"><small>Honda</small>CB650R</div>
+          <table class="spec">
+            <tr><th scope="row">Tipo</th><td>Naked de cuatro cilindros</td></tr>
+            <tr><th scope="row">Motor</th><td>649 cc, cuatro en línea</td></tr>
+            <tr><th scope="row">Terreno</th><td>Asfalto y carreteras de curvas</td></tr>
+          </table>
+        </article>
+        <article class="bike">
+          <div class="model"><small>Honda</small>NX500</div>
+          <table class="spec">
+            <tr><th scope="row">Tipo</th><td>Trail ligera</td></tr>
+            <tr><th scope="row">Motor</th><td>471 cc, bicilíndrico en paralelo</td></tr>
+            <tr><th scope="row">Terreno</th><td>Asfalto y pistas de tierra</td></tr>
+          </table>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="codigo">
+    <div class="wrap">
+      <div class="head">
+        <h2>Código <span class="r">urbex</span></h2>
+        <p class="label">Lo que respetamos en cada salida</p>
+      </div>
+      <div class="rules">
+        <div class="rule"><h3>No damos ubicaciones</h3><p>Si un sitio se hace público, se llena de gente que no viene solo a mirar.</p></div>
+        <div class="rule"><h3>No forzamos nada</h3><p>Si hay que romper una puerta o un candado para entrar, nos damos la vuelta.</p></div>
+        <div class="rule"><h3>Solo fotos y vídeo</h3><p>No nos llevamos nada. El sitio queda igual que lo encontramos.</p></div>
+        <div class="rule"><h3>Nunca solos</h3><p>Siempre en pareja, con linterna, botiquín y alguien que sabe dónde estamos.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto" class="band">
+    <div class="wrap cta">
+      <div>
+        <h2 class="h2" style="margin-bottom:20px">¿Conoces un <span class="r">sitio olvidado?</span></h2>
+        <p>Una fábrica, un pueblo, una casa o un túnel que merezca una visita: escríbenos y lo estudiamos. Si vamos, nunca diremos dónde está.</p>
+        <p>También estamos abiertos a colaboraciones con marcas de equipamiento de moto y de exploración.</p>
+      </div>
+      <div class="box">
+        <span class="label">Correo del canal</span>
+        <div class="mail"><code id="mail">correo@pendiente.com</code><button type="button" id="copy">Copiar</button></div>
+        <span class="label" id="copied" aria-live="polite"></span>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="label">© 2026 Urbex en Moto</span>
+    <ul>
+      <li><a class="label" href="https://www.youtube.com/@UrbexenMotoTyJ" target="_blank" rel="noopener">YouTube</a></li>
+      <li><a class="label" href="https://www.youtube.com/@UrbexenMotoTyJ/shorts" target="_blank" rel="noopener">Shorts</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+document.getElementById('copy').addEventListener('click',function(){
+  var el=document.getElementById('mail'),out=document.getElementById('copied');
+  function sel(){var r=document.createRange();r.selectNodeContents(el);var s=getSelection();s.removeAllRanges();s.addRange(r);out.textContent='Seleccionado: pulsa Ctrl+C';}
+  try{navigator.clipboard.writeText(el.textContent).then(function(){out.textContent='Copiado';},sel);}catch(e){sel();}
+});
+
+(function(){
+  var rtf=new Intl.RelativeTimeFormat('es',{numeric:'auto'});
+  var nf=new Intl.NumberFormat('es',{notation:'compact',maximumFractionDigits:1});
+  function ago(iso){
+    if(!iso)return '';
+    var s=(new Date(iso)-Date.now())/1000, u=[['year',31536000],['month',2592000],['week',604800],['day',86400],['hour',3600],['minute',60]];
+    for(var i=0;i<u.length;i++){if(Math.abs(s)>=u[i][1])return rtf.format(Math.round(s/u[i][1]),u[i][0]);}
+    return 'ahora mismo';
+  }
+  function esc(t){var d=document.createElement('div');d.textContent=t||'';return d.innerHTML;}
+  function clean(t){return (t||'').replace(/[\u{1F300}-\u{1FAFF}\u2600-\u27BF\uFE0F]/gu,'').replace(/\s+/g,' ').trim();}
+  function thumb(v,q){return 'https://i.ytimg.com/vi/'+v.id+'/'+(q||'hqdefault')+'.jpg';}
+  function meta(v){return (v.views!=null?'<span class="label">'+nf.format(v.views)+' visualizaciones</span>':'')+'<span class="label">'+ago(v.published)+'</span>';}
+  function card(v){
+    return '<a class="vid" href="'+esc(v.url)+'" target="_blank" rel="noopener"><div class="thumb"><img loading="lazy" src="'+thumb(v,'mqdefault')+'" alt=""><span class="play"><i></i></span></div><h3>'+esc(clean(v.title))+'</h3><div class="meta">'+meta(v)+'</div></a>';
+  }
+  function shortCard(v){
+    return '<a class="short" href="'+esc(v.url)+'" target="_blank" rel="noopener"><div class="thumb"><img loading="lazy" src="'+thumb(v,'oardefault')+'" onerror="this.onerror=null;this.src=\''+thumb(v)+'\'" alt=""><span class="play"><i></i></span></div><h3>'+esc(clean(v.title))+'</h3></a>';
+  }
+  function feature(v){
+    var parts=clean(v.title).split(/\s*\/\/\s*/), main=parts[0], sub=parts.slice(1).join(' · ');
+    return '<a class="feature" href="'+esc(v.url)+'" target="_blank" rel="noopener"><div class="thumb"><img src="'+thumb(v,'maxresdefault')+'" onerror="this.onerror=null;this.src=\''+thumb(v)+'\'" alt=""><span class="play"><i></i></span></div><div><span class="chip">Último vídeo</span><h3>'+esc(main)+'</h3>'+(sub?'<p>'+esc(sub)+'</p>':'')+(v.description?'<p>'+esc(v.description)+'</p>':'')+'<span class="label">'+(v.views!=null?nf.format(v.views)+' visualizaciones · ':'')+ago(v.published)+'</span></div></a>';
+  }
+  var grid=document.getElementById('grid');
+  grid.innerHTML=Array(6).fill('<div class="vid"><div class="thumb skeleton"></div></div>').join('');
+  fetch('videos.json',{cache:'no-store'}).then(function(r){if(!r.ok)throw r;return r.json();}).then(function(data){
+    var all=data.videos||[], longs=all.filter(function(v){return !v.short;}), shorts=all.filter(function(v){return v.short;});
+    if(!longs.length)throw new Error('vacío');
+    var top=longs[0];
+    document.getElementById('feature').innerHTML=feature(top);
+    grid.innerHTML=longs.slice(1,7).map(card).join('');
+    document.getElementById('last-ago').textContent=ago(top.published).replace(/^./,function(c){return c.toUpperCase();});
+    document.getElementById('last-btn').href=top.url;
+    var hero=document.querySelector('.hero .bgimg'); var im=new Image();
+    im.onload=function(){if(im.naturalWidth>200)hero.style.backgroundImage='url('+im.src+')';};
+    im.src=thumb(top,'maxresdefault');
+    if(shorts.length){document.getElementById('shorts-grid').innerHTML=shorts.slice(0,6).map(shortCard).join('');document.getElementById('shorts').hidden=false;}
+  }).catch(function(){grid.innerHTML='';document.getElementById('feed-error').hidden=false;});
+})();
+</script>
+</body>
+</html>

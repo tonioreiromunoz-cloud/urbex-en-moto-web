@@ -5,9 +5,23 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Urbex en Moto</title>
 <meta name="description" content="Urbex en Moto: exploración urbana, rutas y aventura sobre dos ruedas. Lugares abandonados, carreteras perdidas y rincones olvidados.">
-<meta property="og:title" content="Urbex en Moto">
-<meta property="og:description" content="Explorando lo que otros olvidaron.">
+<link rel="canonical" href="https://urbexenmoto.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Urbex en Moto">
+<meta property="og:locale" content="es_ES">
+<meta property="og:url" content="https://urbexenmoto.com/">
+<meta property="og:title" content="Urbex en Moto · Explorando lo que otros olvidaron">
+<meta property="og:description" content="Fábricas, pueblos vacíos, túneles y centrales abandonadas. Llegamos en moto, entramos con linterna y os lo enseñamos tal y como lo encontramos.">
 <meta property="og:image" content="https://i.ytimg.com/vi/Jn9xcEM_pt4/maxresdefault.jpg">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="720">
+<meta property="og:image:alt" content="Último vídeo de Urbex en Moto">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Urbex en Moto · Explorando lo que otros olvidaron">
+<meta name="twitter:description" content="Exploración urbana, rutas y aventura sobre dos ruedas.">
+<meta name="twitter:image" content="https://i.ytimg.com/vi/Jn9xcEM_pt4/maxresdefault.jpg">
+<link rel="apple-touch-icon" href="https://yt3.googleusercontent.com/yfZkq6yJx0A-Vr_2VUnUTFDU1QEVvLqsmREG8cRS3WRrDpxpPQfcEGf7_pk-lTfcqZ0huaHCmA=s176-c-k-c0x00ffffff-no-rj">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Urbex en Moto","url":"https://urbexenmoto.com/","logo":"https://yt3.googleusercontent.com/yfZkq6yJx0A-Vr_2VUnUTFDU1QEVvLqsmREG8cRS3WRrDpxpPQfcEGf7_pk-lTfcqZ0huaHCmA=s176-c-k-c0x00ffffff-no-rj","description":"Canal de exploración urbana, rutas y aventura sobre dos ruedas.","email":"akkuhytito@gmail.com","sameAs":["https://www.youtube.com/@UrbexenMotoTyJ"]}</script>
 <meta name="theme-color" content="#0d0c0c">
 <link rel="icon" href="https://yt3.googleusercontent.com/yfZkq6yJx0A-Vr_2VUnUTFDU1QEVvLqsmREG8cRS3WRrDpxpPQfcEGf7_pk-lTfcqZ0huaHCmA=s176-c-k-c0x00ffffff-no-rj">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -30,6 +44,7 @@
   color-scheme:dark;
 }
 *{box-sizing:border-box}
+[hidden]{display:none!important}
 html{scroll-behavior:smooth;background:var(--ink)}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 body{margin:0;background:var(--ink);color:var(--paper);font-family:var(--body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
@@ -246,6 +261,44 @@ footer a:hover{color:var(--paper)}
   .tape{font-size:12px}
 }
 
+/* ===== CIFRAS ===== */
+.stats-sec{padding-block:30px 10px}
+.stats{display:grid;grid-template-columns:repeat(var(--n,4),minmax(0,1fr));border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.stat{padding:28px clamp(14px,2vw,28px);display:grid;gap:8px;border-left:1px solid var(--line);position:relative}
+.stat:first-child{border-left:0}
+.stat .ch{font-family:var(--osd);font-size:18px;color:var(--mute);line-height:1}
+.stat b{font-family:var(--display);font-weight:900;font-size:clamp(40px,5.4vw,76px);line-height:.9;letter-spacing:-.02em;font-variant-numeric:tabular-nums;color:var(--paper)}
+.stat b.hot{color:var(--red)}
+.stat .label{color:var(--dust)}
+@media (max-width:760px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.stat:nth-child(3){border-left:0}.stat:nth-child(n+3){border-top:1px solid var(--line)}}
+
+/* ===== REPRODUCTOR ===== */
+.player{position:fixed;inset:0;z-index:200;display:grid;place-items:center;padding:max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.player-bg{position:absolute;inset:0;background:rgba(6,5,5,.92);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.player-box{position:relative;width:min(1100px,100%);display:grid;gap:12px}
+.player-box.is-short{width:min(420px,100%)}
+.player-top{display:flex;align-items:center;gap:14px;min-width:0}
+.player-top .play-tag{font-family:var(--osd);font-size:22px;color:var(--red-hot);display:flex;align-items:center;gap:8px;flex:none}
+.player-top .play-tag::before{content:"";width:0;height:0;border-left:11px solid var(--red-hot);border-top:7px solid transparent;border-bottom:7px solid transparent}
+.player-top h3{font-family:var(--display);font-weight:800;font-size:clamp(15px,1.8vw,20px);text-transform:none;line-height:1.2;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.player-x{flex:none;width:44px;height:44px;border:2px solid var(--paper);background:transparent;color:var(--paper);font-size:18px;cursor:pointer}
+.player-x:hover{background:var(--paper);color:var(--ink)}
+.player-frame{position:relative;aspect-ratio:16/9;background:#000;border:1px solid var(--line);max-height:78vh;width:100%}
+.is-short .player-frame{aspect-ratio:9/16;max-height:80vh}
+.player-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.player-frame i{position:absolute;width:26px;height:26px;border:2px solid rgba(255,255,255,.7);pointer-events:none;z-index:2}
+.player-frame i:nth-of-type(1){top:-8px;left:-8px;border-right:0;border-bottom:0}
+.player-frame i:nth-of-type(2){top:-8px;right:-8px;border-left:0;border-bottom:0}
+.player-frame i:nth-of-type(3){bottom:-8px;left:-8px;border-right:0;border-top:0}
+.player-frame i:nth-of-type(4){bottom:-8px;right:-8px;border-left:0;border-top:0}
+.player-bottom{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.player-bottom a{font-family:var(--display);font-weight:800;font-size:12px;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;color:var(--paper)}
+.player-bottom a:hover{color:var(--red-hot)}
+body.lock{overflow:hidden}
+@media (prefers-reduced-motion:no-preference){.player:not([hidden]) .player-box{animation:pop .45s cubic-bezier(.2,.8,.2,1)}.player:not([hidden]) .player-bg{animation:fadeIn .3s}}
+@keyframes pop{from{opacity:0;transform:scale(.96) translateY(14px)}to{opacity:1;transform:none}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
 /* ===== MOVIMIENTO ===== */
 header.top{transition:background .25s,border-color .25s,transform .35s cubic-bezier(.2,.7,.2,1)}
 header.top.hide{transform:translateY(-100%)}
@@ -347,6 +400,12 @@ a:hover .thumb .tag{animation:glitch .45s steps(2) 1}
     <div class="tape a"><span>Prohibido el paso ✕ Urbex en Moto ✕ Peligro de derrumbe ✕ Explorando lo que otros olvidaron ✕ Prohibido el paso ✕ Urbex en Moto ✕ Peligro de derrumbe ✕ Explorando lo que otros olvidaron ✕ Prohibido el paso ✕ Urbex en Moto ✕ Peligro de derrumbe ✕ Explorando lo que otros olvidaron ✕&nbsp;</span></div>
     <div class="tape b"><span>No pasar ✕ Zona abandonada ✕ No pasar ✕ Zona abandonada ✕ No pasar ✕ Zona abandonada ✕ No pasar ✕ Zona abandonada ✕ No pasar ✕ Zona abandonada ✕ No pasar ✕ Zona abandonada ✕ No pasar ✕ Zona abandonada ✕ No pasar ✕ Zona abandonada ✕&nbsp;</span></div>
   </div>
+
+  <section class="stats-sec" id="cifras" hidden aria-label="El canal en cifras">
+    <div class="wrap">
+      <div class="stats" id="stats"></div>
+    </div>
+  </section>
 
   <section id="expedientes">
     <div class="wrap">
@@ -463,6 +522,15 @@ a:hover .thumb .tag{animation:glitch .45s steps(2) 1}
   </div>
 </footer>
 
+<div class="player" id="player" hidden role="dialog" aria-modal="true" aria-labelledby="player-title">
+  <div class="player-bg" data-close></div>
+  <div class="player-box" id="player-box">
+    <div class="player-top"><span class="play-tag">PLAY</span><h3 id="player-title"></h3><button type="button" class="player-x" id="player-x" data-close aria-label="Cerrar vídeo">✕</button></div>
+    <div class="player-frame" id="player-frame"><i></i><i></i><i></i><i></i></div>
+    <div class="player-bottom"><a id="player-yt" href="https://www.youtube.com/@UrbexenMotoTyJ" target="_blank" rel="noopener">Ver en YouTube ↗</a><span class="label">Esc para cerrar</span></div>
+  </div>
+</div>
+
 <script>
 (function(){
   /* cabecera sólida al hacer scroll */
@@ -520,15 +588,78 @@ a:hover .thumb .tag{animation:glitch .45s steps(2) 1}
   function views(v){return v.views!=null?nf.format(v.views)+' visualizaciones':'';}
 
   function card(v){
-    return '<a class="vid" href="'+esc(v.url)+'" target="_blank" rel="noopener"><div class="thumb"><img loading="lazy" src="'+thumb(v,'mqdefault')+'" alt=""><span class="tag">'+exp(v.n)+'</span><span class="play"><i></i></span></div><h3>'+esc(clean(v.title))+'</h3><div class="meta"><span class="label">'+views(v)+'</span><span class="label">'+ago(v.published)+'</span></div></a>';
+    return '<a class="vid" href="'+esc(v.url)+'" data-yt="'+esc(v.id)+'" data-title="'+esc(clean(v.title))+'" target="_blank" rel="noopener"><div class="thumb"><img loading="lazy" src="'+thumb(v,'mqdefault')+'" alt=""><span class="tag">'+exp(v.n)+'</span><span class="play"><i></i></span></div><h3>'+esc(clean(v.title))+'</h3><div class="meta"><span class="label">'+views(v)+'</span><span class="label">'+ago(v.published)+'</span></div></a>';
   }
   function feature(v){
     var parts=clean(v.title).split(/\s*\/\/\s*/),main=parts[0],sub=parts.slice(1).join(' · ');
-    return '<a class="feature" href="'+esc(v.url)+'" target="_blank" rel="noopener"><div class="thumb"><img src="'+thumb(v,'maxresdefault')+'"'+fallback(v)+' alt=""><span class="tag">'+exp(v.n)+' · REC</span><span class="play"><i></i></span></div><div class="info"><span class="stamp">Nuevo expediente</span><h3>'+esc(main)+'</h3>'+(sub?'<p>'+esc(sub)+'</p>':'')+'<span class="label">'+[views(v),ago(v.published)].filter(Boolean).join(' · ')+'</span><span class="btn red" style="justify-self:start;margin-top:8px">▶ Ver ahora</span></div></a>';
+    return '<a class="feature" href="'+esc(v.url)+'" data-yt="'+esc(v.id)+'" data-title="'+esc(main)+'" target="_blank" rel="noopener"><div class="thumb"><img src="'+thumb(v,'maxresdefault')+'"'+fallback(v)+' alt=""><span class="tag">'+exp(v.n)+' · REC</span><span class="play"><i></i></span></div><div class="info"><span class="stamp">Nuevo expediente</span><h3>'+esc(main)+'</h3>'+(sub?'<p>'+esc(sub)+'</p>':'')+'<span class="label">'+[views(v),ago(v.published)].filter(Boolean).join(' · ')+'</span><span class="btn red" style="justify-self:start;margin-top:8px">▶ Ver ahora</span></div></a>';
   }
   function shortCard(v){
-    return '<a class="short" href="'+esc(v.url)+'" target="_blank" rel="noopener"><div class="thumb"><img loading="lazy" src="'+thumb(v,'oar2')+'" onerror="this.onerror=null;this.src=\''+thumb(v,'frame0')+'\'" alt=""><span class="views">'+(v.views!=null?'▶ '+nf.format(v.views):'')+'</span><span class="play"><i></i></span></div><h3>'+esc(clean(v.title))+'</h3></a>';
+    return '<a class="short" href="'+esc(v.url)+'" data-yt="'+esc(v.id)+'" data-short="1" data-title="'+esc(clean(v.title))+'" target="_blank" rel="noopener"><div class="thumb"><img loading="lazy" src="'+thumb(v,'oar2')+'" onerror="this.onerror=null;this.src=\''+thumb(v,'frame0')+'\'" alt=""><span class="views">'+(v.views!=null?'▶ '+nf.format(v.views):'')+'</span><span class="play"><i></i></span></div><h3>'+esc(clean(v.title))+'</h3></a>';
   }
+
+  /* cifras del canal con contador animado */
+  function renderStats(ch,all,longs,shorts){
+    var total=all.reduce(function(a,v){return a+(v.views||0);},0);
+    var items=[
+      ch.subscribers!=null?{n:ch.subscribers,l:'Suscriptores',hot:true}:null,
+      {n:ch.videoCount!=null?ch.videoCount:all.length,l:'Vídeos publicados'},
+      {n:total,l:'Visualizaciones de estos vídeos'},
+      {n:longs.length,l:'Expedientes abiertos'}
+    ].filter(Boolean);
+    var box=document.getElementById('stats'),fmt=new Intl.NumberFormat('es');
+    box.innerHTML=items.map(function(it,i){return '<div class="stat"><span class="ch">CH.0'+(i+1)+'</span><b'+(it.hot?' class="hot"':'')+' data-n="'+it.n+'">'+fmt.format(it.n)+'</b><span class="label">'+it.l+'</span></div>';}).join('');
+    box.style.setProperty('--n',items.length);
+    document.getElementById('cifras').hidden=false;
+    if(reduce||!('IntersectionObserver' in window))return;
+    var nums=[].slice.call(box.querySelectorAll('b[data-n]'));
+    nums.forEach(function(b){b.textContent='0';});
+    var io=new IntersectionObserver(function(es){
+      if(!es[0].isIntersecting)return; io.disconnect();
+      var t0=performance.now();
+      (function step(t){
+        var p=Math.min((t-t0)/1600,1),e=1-Math.pow(1-p,4);
+        nums.forEach(function(b){b.textContent=fmt.format(Math.round(+b.getAttribute('data-n')*e));});
+        if(p<1)requestAnimationFrame(step);
+      })(t0);
+    },{threshold:.4});
+    io.observe(box);
+  }
+
+  /* reproductor dentro de la web */
+  var player=document.getElementById('player'),pbox=document.getElementById('player-box'),pframe=document.getElementById('player-frame'),lastFocus=null;
+  function openPlayer(id,title,isShort){
+    lastFocus=document.activeElement;
+    pbox.classList.toggle('is-short',!!isShort);
+    document.getElementById('player-title').textContent=title||'Urbex en Moto';
+    document.getElementById('player-yt').href=isShort?'https://www.youtube.com/shorts/'+id:'https://www.youtube.com/watch?v='+id;
+    var f=document.createElement('iframe');
+    f.src='https://www.youtube-nocookie.com/embed/'+encodeURIComponent(id)+'?autoplay=1&rel=0&modestbranding=1&playsinline=1';
+    f.title=title||'Vídeo de Urbex en Moto';
+    f.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+    f.allowFullscreen=true;
+    pframe.appendChild(f);
+    player.hidden=false; document.body.classList.add('lock');
+    document.getElementById('player-x').focus();
+  }
+  function closePlayer(){
+    if(player.hidden)return;
+    var f=pframe.querySelector('iframe'); if(f)f.remove();
+    player.hidden=true; document.body.classList.remove('lock');
+    if(lastFocus&&lastFocus.focus)lastFocus.focus();
+  }
+  document.addEventListener('click',function(e){
+    if(e.target.closest('[data-close]')){closePlayer();return;}
+    var a=e.target.closest('a[data-yt]');
+    if(!a||e.ctrlKey||e.metaKey||e.shiftKey||e.altKey||e.button!==0)return;
+    e.preventDefault();
+    openPlayer(a.getAttribute('data-yt'),a.getAttribute('data-title'),a.getAttribute('data-short')==='1');
+  });
+  document.addEventListener('keydown',function(e){
+    if(player.hidden)return;
+    if(e.key==='Escape')closePlayer();
+    if(e.key==='Tab'){e.preventDefault();document.getElementById(document.activeElement.id==='player-x'?'player-yt':'player-x').focus();}
+  });
 
   var grid=document.getElementById('grid');
   grid.innerHTML=Array(6).fill('<div class="vid"><div class="thumb skeleton"></div></div>').join('');
@@ -544,7 +675,7 @@ a:hover .thumb .tag{animation:glitch .45s steps(2) 1}
     document.getElementById('count-videos').textContent=longs.length+' vídeos';
 
     var latest=document.getElementById('latest');
-    latest.href=top.url;
+    latest.href=top.url; latest.setAttribute('data-yt',top.id); latest.setAttribute('data-title',clean(top.title).split(/\s*\/\/\s*/)[0]);
     document.getElementById('latest-title').textContent=clean(top.title).split(/\s*\/\/\s*/)[0];
     document.getElementById('latest-ago').textContent=ago(top.published);
     document.getElementById('latest-ph').style.backgroundImage='url('+thumb(top,'mqdefault')+')';
@@ -552,6 +683,8 @@ a:hover .thumb .tag{animation:glitch .45s steps(2) 1}
     var bg=document.getElementById('hero-bg'),im=new Image();
     im.onload=function(){if(im.naturalWidth>200)bg.style.backgroundImage='url('+im.src+')';};
     im.src=thumb(top,'maxresdefault');
+
+    renderStats(data.channel||{},all,longs,shorts);
 
     if(shorts.length){
       reel.innerHTML=shorts.slice(0,16).map(shortCard).join('');
@@ -607,7 +740,7 @@ a:hover .thumb .tag{animation:glitch .45s steps(2) 1}
 
   /* apariciones al hacer scroll (solo lo que aún no está en pantalla) */
   function reveal(root){
-    var sel='.head h2, .head .side, .head > p, .feature, .grid > *, .reel > *, .bike, .sign, .contact .wrap > *, .big';
+    var sel='.head h2, .head .side, .head > p, .feature, .grid > *, .reel > *, .bike, .sign, .contact .wrap > *, .big, .stat';
     var els=[].slice.call((root||document).querySelectorAll(sel)).filter(function(el){
       return !el.classList.contains('rv') && !el.closest('.hero');
     });

@@ -801,7 +801,7 @@ a:hover .thumb .tag{animation:glitch .45s steps(2) 1}
     (function ease(){
       requestAnimationFrame(ease);
       if(!active)return;
-      cx+=(tx-cx)*0.09; cy+=(ty-cy)*0.09;
+      cx=tx; cy=ty;
       hero.style.setProperty('--fx',cx.toFixed(2)+'%');
       hero.style.setProperty('--fy',cy.toFixed(2)+'%');
     })();

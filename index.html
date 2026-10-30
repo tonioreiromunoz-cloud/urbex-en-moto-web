@@ -360,6 +360,25 @@ html.hw .hw-toggle .st{color:#ff8f2e}
 .hw-toggle[hidden]{display:none!important}
 @media (max-width:600px){.hw-toggle .tx{display:none}.hw-toggle{padding:8px 12px 8px 8px}}
 
+
+/* ===== EASTER EGG: DOOM ===== */
+.osd .bat{pointer-events:auto;cursor:pointer;padding:6px;margin:-6px}
+.osd .bat:hover{color:var(--red-hot)}
+.osd .bat:hover b::before{inset:2px 22px 2px 2px;background:var(--red-hot);animation:blink .6s steps(1) infinite}
+.osd .bat:focus-visible{outline:2px solid var(--tape);outline-offset:2px}
+.doom{position:fixed;inset:0;z-index:210;display:grid;place-items:center;background:rgba(0,0,0,.96);padding:max(14px,env(safe-area-inset-top,0px)) max(14px,env(safe-area-inset-right,0px)) max(14px,env(safe-area-inset-bottom,0px)) max(14px,env(safe-area-inset-left,0px))}
+.doom-box{width:min(1000px,100%,calc((100vh - 210px)*4/3));display:grid;gap:10px}
+.doom-top{display:flex;align-items:center;gap:14px;min-width:0}
+.doom-top .t{font-family:var(--osd);font-size:24px;color:var(--red-hot);flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.doom-frame{position:relative;aspect-ratio:4/3;background:#000;border:1px solid var(--line)}
+.doom-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.doom-keys{display:flex;flex-wrap:wrap;gap:6px 16px;font-family:var(--osd);font-size:18px;color:var(--dust)}
+.doom-keys kbd{font-family:inherit;color:var(--paper);border:1px solid var(--line);padding:0 6px}
+.doom-legal{font-size:11px;color:var(--mute);letter-spacing:.04em}
+.doom-legal a{color:var(--dust)}
+body.doom-open *{animation-play-state:paused!important}
+body.doom-open .doom *{animation-play-state:running!important}
+
 /* ===== MOVIMIENTO ===== */
 header.top{transition:background .25s,border-color .25s,transform .35s cubic-bezier(.2,.7,.2,1)}
 header.top.hide{transform:translateY(-100%)}
@@ -450,7 +469,7 @@ if(on)document.documentElement.classList.add('hw');})();
     <div class="osd" aria-hidden="true">
       <i></i><i></i><i></i><i></i>
       <span class="rec">REC</span>
-      <span class="bat"><b></b></span>
+      <span class="bat" id="bat" role="button" tabindex="0" title="¿Batería baja?" aria-label="Batería"><b></b></span>
       <span class="mode" data-hw="SP ▸ 31 OCT ▸ NIGHT">SP ▸ NIGHT</span>
       <span class="time" id="clock">--.--.---- --:--:--</span>
     </div>
@@ -614,6 +633,15 @@ if(on)document.documentElement.classList.add('hw');})();
 </footer>
 
 <button type="button" class="hw-toggle" id="hw-toggle" hidden aria-pressed="false" title="Activar o desactivar el modo Halloween"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="#4a7a2a" d="M16 4c1-2 3-3 5-2-2 0-3 2-3.4 4.4L16 7z"/><ellipse cx="16" cy="18.5" rx="13" ry="11" fill="currentColor"/><path d="M10 9c-3 3-3 16 0 20M22 9c3 3 3 16 0 20M16 8v21" stroke="rgba(0,0,0,.25)" stroke-width="1.4" fill="none"/><path fill="#1a0f05" d="M9 15l4 2-4 2zM23 15l-4 2 4 2zM9 22c3 3 11 3 14 0l-2 1-1.4-1.6-1.6 1.8-2-1.8-2 1.8-1.6-1.8L11 23z"/></svg><span class="tx">Halloween</span><span class="st" id="hw-st">OFF</span></button>
+
+<div class="doom" id="doom" hidden role="dialog" aria-modal="true" aria-label="DOOM">
+  <div class="doom-box">
+    <div class="doom-top"><span class="t">▶ BATERÍA BAJA · DOOM E1 · KNEE-DEEP IN THE DEAD</span><button type="button" class="player-x" id="doom-x" aria-label="Salir de DOOM">✕</button></div>
+    <div class="doom-frame" id="doom-frame"></div>
+    <div class="doom-keys"><span><kbd>W A S D</kbd> moverse</span><span><kbd>← →</kbd> girar</span><span><kbd>Espacio</kbd> disparar</span><span><kbd>E</kbd> abrir puertas</span><span><kbd>Shift</kbd> correr</span><span><kbd>1-7</kbd> armas</span><span><kbd>Esc</kbd> menú</span></div>
+    <p class="doom-legal">DOOM shareware (episodio 1) © 1993 id Software, de distribución gratuita. Motor: Chocolate Doom (GPL) compilado para web por <a href="https://github.com/cloudflare/doom-wasm" target="_blank" rel="noopener">cloudflare/doom-wasm</a>. Solo con teclado.</p>
+  </div>
+</div>
 
 <div class="player" id="player" hidden role="dialog" aria-modal="true" aria-labelledby="player-title">
   <div class="player-bg" data-close></div>
@@ -857,6 +885,32 @@ if(on)document.documentElement.classList.add('hw');})();
 })();
 </script>
 
+<script>
+/* Easter egg: pulsar la batería del visor abre DOOM */
+(function(){
+  var bat=document.getElementById('bat'),box=document.getElementById('doom'),frame=document.getElementById('doom-frame'),last=null;
+  if(!bat)return;
+  function open(){
+    last=document.activeElement;
+    var f=document.createElement('iframe');
+    f.src='doom/'; f.title='DOOM'; f.setAttribute('allow','autoplay; fullscreen');
+    frame.appendChild(f);
+    box.hidden=false; document.body.classList.add('lock','doom-open');
+    f.addEventListener('load',function(){try{f.focus();f.contentWindow.focus();}catch(e){}});
+  }
+  function close(){
+    if(box.hidden)return;
+    var f=frame.querySelector('iframe'); if(f)f.remove();
+    box.hidden=true; document.body.classList.remove('lock','doom-open');
+    if(last&&last.focus)last.focus();
+  }
+  bat.addEventListener('click',open);
+  bat.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();open();}});
+  document.getElementById('doom-x').addEventListener('click',close);
+  box.addEventListener('click',function(e){if(e.target===box)close();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!box.hidden)close();});
+})();
+</script>
 <script>
 /* Botón del modo Halloween */
 (function(){

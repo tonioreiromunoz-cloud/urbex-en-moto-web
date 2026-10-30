@@ -325,6 +325,41 @@ body.lock{overflow:hidden}
 .ig-follow b{font-family:var(--display);font-weight:900;font-size:clamp(24px,2.6vw,32px);text-transform:uppercase;line-height:1}
 .ig-follow b span{color:var(--red-hot)}
 
+
+/* ===== HALLOWEEN ===== */
+html.hw{--ink:#0c0910;--night:#130e17;--panel:#1b1420;--line:#2e2434;--red:#ee6a12;--red-hot:#ff8f2e;--tape:#ff7a18;--dust:#a596a0;--mute:#6e6170}
+html.hw .tape.b{background-color:#d95c0a}
+html.hw .hero h1 .r{text-shadow:0 0 50px rgba(255,120,20,.55),0 0 14px rgba(255,120,20,.35)}
+html.hw .hero .fade{background:linear-gradient(0deg,var(--ink) 0%,rgba(12,9,16,.55) 28%,transparent 55%),linear-gradient(90deg,rgba(12,9,16,.75) 0%,transparent 55%),radial-gradient(ellipse at 50% 110%,rgba(255,110,20,.22),transparent 60%)}
+html.hw .btn.red,html.hw nav a.sub,html.hw .chip{background:var(--red);border-color:var(--red)}
+html.hw .big span{-webkit-text-stroke-color:rgba(255,122,24,.5)}
+html.hw .thumb .play i{box-shadow:0 0 0 8px rgba(238,106,18,.25)}
+.hw-only{display:none}
+html.hw .hw-only{display:block}
+.hw-web{position:absolute;z-index:1;width:clamp(120px,15vw,210px);color:rgba(237,230,218,.22);pointer-events:none}
+.hw-web svg{display:block;width:100%;height:auto}
+.hw-web.l{top:0;left:0}
+.hw-web.r{top:0;right:0;transform:scaleX(-1)}
+.hw-bats{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.hw-bat{position:absolute;left:0;top:0;width:46px;color:#050307;will-change:transform;animation:batFly var(--t,16s) linear var(--dl,0s) infinite}
+.hw-bat svg{display:block;width:100%;height:auto;animation:flap .32s ease-in-out infinite alternate;transform-origin:50% 40%}
+@keyframes flap{from{transform:scaleY(1)}to{transform:scaleY(.35)}}
+@keyframes batFly{0%{transform:translate3d(-10vw,var(--y0,30vh),0) scale(var(--s,1))}50%{transform:translate3d(50vw,var(--y1,12vh),0) scale(var(--s,1))}100%{transform:translate3d(112vw,var(--y2,26vh),0) scale(var(--s,1))}}
+.hw-ghost{position:absolute;left:0;top:0;width:clamp(70px,8vw,120px);color:rgba(230,225,240,.16);pointer-events:none;z-index:0;will-change:transform,opacity;animation:ghost 26s ease-in-out 4s infinite;opacity:0}
+.hw-ghost svg{display:block;width:100%;height:auto}
+@keyframes ghost{0%{opacity:0;transform:translate3d(78vw,46vh,0)}8%{opacity:1}22%{opacity:1;transform:translate3d(60vw,38vh,0)}30%{opacity:0;transform:translate3d(52vw,34vh,0)}100%{opacity:0;transform:translate3d(52vw,34vh,0)}}
+@media (prefers-reduced-motion:reduce){.hw-bat,.hw-bat svg,.hw-ghost{animation:none}.hw-bats,.hw-ghost{display:none!important}}
+/* botón */
+.hw-toggle{position:fixed;left:max(16px,env(safe-area-inset-left,0px));bottom:max(16px,env(safe-area-inset-bottom,0px));z-index:150;display:flex;align-items:center;gap:10px;padding:8px 14px 8px 8px;background:rgba(12,9,16,.94);border:2px solid var(--line);color:var(--paper);cursor:pointer;font-family:var(--display);font-weight:800;font-size:12px;letter-spacing:.12em;text-transform:uppercase;transition:border-color .2s,transform .2s}
+.hw-toggle:hover{transform:translateY(-2px);border-color:#ff7a18}
+.hw-toggle svg{width:30px;height:30px;color:#6b5a50;transition:color .2s,filter .2s}
+.hw-toggle .st{font-family:var(--osd);font-size:18px;letter-spacing:.04em;color:var(--mute)}
+html.hw .hw-toggle{border-color:#ff7a18}
+html.hw .hw-toggle svg{color:#ff7a18;filter:drop-shadow(0 0 6px rgba(255,122,24,.7))}
+html.hw .hw-toggle .st{color:#ff8f2e}
+.hw-toggle[hidden]{display:none!important}
+@media (max-width:600px){.hw-toggle .tx{display:none}.hw-toggle{padding:8px 12px 8px 8px}}
+
 /* ===== MOVIMIENTO ===== */
 header.top{transition:background .25s,border-color .25s,transform .35s cubic-bezier(.2,.7,.2,1)}
 header.top.hide{transform:translateY(-100%)}
@@ -374,6 +409,12 @@ a:hover .thumb .tag{animation:glitch .45s steps(2) 1}
   .bike.rv.in{transform:none}
 }
 </style>
+<script>
+/* Modo Halloween: activo por defecto del 20 de octubre al 2 de noviembre; cada visitante puede apagarlo */
+(function(){var d=new Date(),m=d.getMonth(),day=d.getDate();window.urbexHwSeason=(m===9&&day>=20)||(m===10&&day<=2);
+var on=window.urbexHwSeason;try{var v=localStorage.getItem('urbex-hw');if(v!==null&&window.urbexHwSeason)on=v==='1';}catch(e){}
+if(on)document.documentElement.classList.add('hw');})();
+</script>
 </head>
 <body>
 
@@ -397,18 +438,27 @@ a:hover .thumb .tag{animation:glitch .45s steps(2) 1}
     <div class="bg" id="hero-bg" aria-hidden="true"></div>
     <div class="dark" aria-hidden="true"></div>
     <div class="fade" aria-hidden="true"></div>
+    <div class="hw-only hw-bats" aria-hidden="true">
+      <div class="hw-bat" style="--t:17s;--dl:-2s;--y0:22vh;--y1:8vh;--y2:18vh;--s:1"><svg viewBox="0 0 64 30"><path fill="currentColor" d="M32 8c1.5-3 3-4.5 3-4.5l.8 4.2c2.6-.6 5.2-.3 7.6 1 3.6-3 9-4.6 14.6-3.2-4.4 1.4-7 4.8-7.6 9.4-2.2-1.6-4.8-2-7.2-.6-.2 3.2-2 6-4.8 7.6-1.2-1.6-3-2.6-5.4-2.6s-4.2 1-5.4 2.6c-2.8-1.6-4.6-4.4-4.8-7.6-2.4-1.4-5-1-7.2.6-.6-4.6-3.2-8-7.6-9.4 5.6-1.4 11 .2 14.6 3.2 2.4-1.3 5-1.6 7.6-1l.8-4.2S30.5 5 32 8z"/></svg></div>
+      <div class="hw-bat" style="--t:23s;--dl:-9s;--y0:34vh;--y1:20vh;--y2:30vh;--s:.7"><svg viewBox="0 0 64 30"><path fill="currentColor" d="M32 8c1.5-3 3-4.5 3-4.5l.8 4.2c2.6-.6 5.2-.3 7.6 1 3.6-3 9-4.6 14.6-3.2-4.4 1.4-7 4.8-7.6 9.4-2.2-1.6-4.8-2-7.2-.6-.2 3.2-2 6-4.8 7.6-1.2-1.6-3-2.6-5.4-2.6s-4.2 1-5.4 2.6c-2.8-1.6-4.6-4.4-4.8-7.6-2.4-1.4-5-1-7.2.6-.6-4.6-3.2-8-7.6-9.4 5.6-1.4 11 .2 14.6 3.2 2.4-1.3 5-1.6 7.6-1l.8-4.2S30.5 5 32 8z"/></svg></div>
+      <div class="hw-bat" style="--t:29s;--dl:-16s;--y0:14vh;--y1:26vh;--y2:10vh;--s:.5"><svg viewBox="0 0 64 30"><path fill="currentColor" d="M32 8c1.5-3 3-4.5 3-4.5l.8 4.2c2.6-.6 5.2-.3 7.6 1 3.6-3 9-4.6 14.6-3.2-4.4 1.4-7 4.8-7.6 9.4-2.2-1.6-4.8-2-7.2-.6-.2 3.2-2 6-4.8 7.6-1.2-1.6-3-2.6-5.4-2.6s-4.2 1-5.4 2.6c-2.8-1.6-4.6-4.4-4.8-7.6-2.4-1.4-5-1-7.2.6-.6-4.6-3.2-8-7.6-9.4 5.6-1.4 11 .2 14.6 3.2 2.4-1.3 5-1.6 7.6-1l.8-4.2S30.5 5 32 8z"/></svg></div>
+      <div class="hw-bat" style="--t:21s;--dl:-5s;--y0:42vh;--y1:30vh;--y2:38vh;--s:.85"><svg viewBox="0 0 64 30"><path fill="currentColor" d="M32 8c1.5-3 3-4.5 3-4.5l.8 4.2c2.6-.6 5.2-.3 7.6 1 3.6-3 9-4.6 14.6-3.2-4.4 1.4-7 4.8-7.6 9.4-2.2-1.6-4.8-2-7.2-.6-.2 3.2-2 6-4.8 7.6-1.2-1.6-3-2.6-5.4-2.6s-4.2 1-5.4 2.6c-2.8-1.6-4.6-4.4-4.8-7.6-2.4-1.4-5-1-7.2.6-.6-4.6-3.2-8-7.6-9.4 5.6-1.4 11 .2 14.6 3.2 2.4-1.3 5-1.6 7.6-1l.8-4.2S30.5 5 32 8z"/></svg></div>
+    </div>
+    <div class="hw-only hw-ghost" aria-hidden="true"><svg viewBox="0 0 60 76"><path fill="currentColor" d="M30 2C15 2 6 13 6 28v44l7-6 6 6 6-6 5 6 5-6 6 6 6-6 7 6V28C54 13 45 2 30 2z"/><ellipse cx="22" cy="30" rx="4" ry="6" fill="#0c0910"/><ellipse cx="38" cy="30" rx="4" ry="6" fill="#0c0910"/><ellipse cx="30" cy="46" rx="5" ry="7" fill="#0c0910"/></svg></div>
+    <div class="hw-only hw-web l" aria-hidden="true"><svg viewBox="0 0 230 230" fill="none" stroke="currentColor" stroke-width="1.1"><path d="M0 0L230.0 0.0M0 0L222.2 59.5M0 0L195.1 121.9M0 0L147.8 176.2M0 0L86.2 213.3M0 0L24.0 228.7M0 0L0.0 230.0M40.0 0.0Q34.1 4.5 38.6 10.4Q31.5 13.7 33.9 21.2Q26.0 22.6 25.7 30.6Q17.7 29.5 15.0 37.1Q8.3 33.4 4.2 39.8Q1.8 34.4 0.0 40.0M75.0 0.0Q63.9 8.4 72.4 19.4Q59.2 25.7 63.6 39.7Q48.7 42.3 48.2 57.5Q33.2 55.3 28.1 69.5Q15.6 62.6 7.8 74.6Q3.4 64.4 0.0 75.0M112.0 0.0Q95.5 12.6 108.2 29.0Q88.3 38.4 95.0 59.4Q72.7 63.2 72.0 85.8Q49.6 82.6 42.0 103.8Q23.3 93.5 11.7 111.4Q5.0 96.2 0.0 112.0M150.0 0.0Q127.9 16.8 144.9 38.8Q118.3 51.4 127.2 79.5Q97.4 84.6 96.4 114.9Q66.4 110.6 56.2 139.1Q31.2 125.2 15.7 149.2Q6.8 128.8 0.0 150.0M190.0 0.0Q162.0 21.3 183.5 49.2Q149.8 65.2 161.1 100.7Q123.3 107.2 122.1 145.5Q84.2 140.1 71.2 176.2Q39.5 158.5 19.9 189.0Q8.6 163.2 0.0 190.0"/><path d="M118 0v58" stroke-width=".8"/><circle cx="118" cy="64" r="5" fill="currentColor"/><path d="M113 60l-6-4M113 64h-7M113 68l-6 4M123 60l6-4M123 64h7M123 68l6 4" stroke-width=".9"/></svg></div>
+    <div class="hw-only hw-web r" aria-hidden="true"><svg viewBox="0 0 230 230" fill="none" stroke="currentColor" stroke-width="1.1"><path d="M0 0L230.0 0.0M0 0L222.2 59.5M0 0L195.1 121.9M0 0L147.8 176.2M0 0L86.2 213.3M0 0L24.0 228.7M0 0L0.0 230.0M40.0 0.0Q34.1 4.5 38.6 10.4Q31.5 13.7 33.9 21.2Q26.0 22.6 25.7 30.6Q17.7 29.5 15.0 37.1Q8.3 33.4 4.2 39.8Q1.8 34.4 0.0 40.0M75.0 0.0Q63.9 8.4 72.4 19.4Q59.2 25.7 63.6 39.7Q48.7 42.3 48.2 57.5Q33.2 55.3 28.1 69.5Q15.6 62.6 7.8 74.6Q3.4 64.4 0.0 75.0M112.0 0.0Q95.5 12.6 108.2 29.0Q88.3 38.4 95.0 59.4Q72.7 63.2 72.0 85.8Q49.6 82.6 42.0 103.8Q23.3 93.5 11.7 111.4Q5.0 96.2 0.0 112.0M150.0 0.0Q127.9 16.8 144.9 38.8Q118.3 51.4 127.2 79.5Q97.4 84.6 96.4 114.9Q66.4 110.6 56.2 139.1Q31.2 125.2 15.7 149.2Q6.8 128.8 0.0 150.0M190.0 0.0Q162.0 21.3 183.5 49.2Q149.8 65.2 161.1 100.7Q123.3 107.2 122.1 145.5Q84.2 140.1 71.2 176.2Q39.5 158.5 19.9 189.0Q8.6 163.2 0.0 190.0"/><path d="M118 0v58" stroke-width=".8"/><circle cx="118" cy="64" r="5" fill="currentColor"/><path d="M113 60l-6-4M113 64h-7M113 68l-6 4M123 60l6-4M123 64h7M123 68l6 4" stroke-width=".9"/></svg></div>
     <div class="osd" aria-hidden="true">
       <i></i><i></i><i></i><i></i>
       <span class="rec">REC</span>
       <span class="bat"><b></b></span>
-      <span class="mode">SP ▸ NIGHT</span>
+      <span class="mode" data-hw="SP ▸ 31 OCT ▸ NIGHT">SP ▸ NIGHT</span>
       <span class="time" id="clock">--.--.---- --:--:--</span>
     </div>
     <div class="wrap">
       <div>
-        <p class="label eyebrow">Exploración urbana · Rutas · Dos ruedas</p>
+        <p class="label eyebrow" data-hw="Edición Halloween · Exploración urbana · Dos ruedas">Exploración urbana · Rutas · Dos ruedas</p>
         <h1><span class="w">Urbex</span><span class="r">en Moto</span></h1>
-        <p class="tagline">Explorando lo que otros olvidaron</p>
+        <p class="tagline" data-hw="Esta noche, no entres solo">Explorando lo que otros olvidaron</p>
         <p class="lead">Fábricas, pueblos vacíos, túneles y centrales abandonadas. Llegamos en moto, entramos con linterna y os lo enseñamos tal y como lo encontramos.</p>
         <div class="ctas">
           <a class="btn red" href="https://www.youtube.com/@UrbexenMotoTyJ?sub_confirmation=1" target="_blank" rel="noopener">Suscríbete al canal</a>
@@ -424,8 +474,8 @@ a:hover .thumb .tag{animation:glitch .45s steps(2) 1}
   </section>
 
   <div class="tapes" aria-hidden="true">
-    <div class="tape a"><span>Prohibido el paso ✕ Urbex en Moto ✕ Peligro de derrumbe ✕ Explorando lo que otros olvidaron ✕ Prohibido el paso ✕ Urbex en Moto ✕ Peligro de derrumbe ✕ Explorando lo que otros olvidaron ✕ Prohibido el paso ✕ Urbex en Moto ✕ Peligro de derrumbe ✕ Explorando lo que otros olvidaron ✕&nbsp;</span></div>
-    <div class="tape b"><span>No pasar ✕ Zona abandonada ✕ No pasar ✕ Zona abandonada ✕ No pasar ✕ Zona abandonada ✕ No pasar ✕ Zona abandonada ✕ No pasar ✕ Zona abandonada ✕ No pasar ✕ Zona abandonada ✕ No pasar ✕ Zona abandonada ✕ No pasar ✕ Zona abandonada ✕&nbsp;</span></div>
+    <div class="tape a"><span data-hw="Feliz Halloween ✕ No entres solo ✕ Algo nos sigue ✕ Urbex en Moto ✕ Feliz Halloween ✕ No entres solo ✕ Algo nos sigue ✕ Urbex en Moto ✕ Feliz Halloween ✕ No entres solo ✕ Algo nos sigue ✕ Urbex en Moto ✕ ">Prohibido el paso ✕ Urbex en Moto ✕ Peligro de derrumbe ✕ Explorando lo que otros olvidaron ✕ Prohibido el paso ✕ Urbex en Moto ✕ Peligro de derrumbe ✕ Explorando lo que otros olvidaron ✕ Prohibido el paso ✕ Urbex en Moto ✕ Peligro de derrumbe ✕ Explorando lo que otros olvidaron ✕&nbsp;</span></div>
+    <div class="tape b"><span data-hw="Truco o trato ✕ Zona encantada ✕ Truco o trato ✕ Zona encantada ✕ Truco o trato ✕ Zona encantada ✕ Truco o trato ✕ Zona encantada ✕ Truco o trato ✕ Zona encantada ✕ Truco o trato ✕ Zona encantada ✕ Truco o trato ✕ Zona encantada ✕ Truco o trato ✕ Zona encantada ✕ ">No pasar ✕ Zona abandonada ✕ No pasar ✕ Zona abandonada ✕ No pasar ✕ Zona abandonada ✕ No pasar ✕ Zona abandonada ✕ No pasar ✕ Zona abandonada ✕ No pasar ✕ Zona abandonada ✕ No pasar ✕ Zona abandonada ✕ No pasar ✕ Zona abandonada ✕&nbsp;</span></div>
   </div>
 
   <section class="stats-sec" id="cifras" hidden aria-label="El canal en cifras">
@@ -562,6 +612,8 @@ a:hover .thumb .tag{animation:glitch .45s steps(2) 1}
     </div>
   </div>
 </footer>
+
+<button type="button" class="hw-toggle" id="hw-toggle" hidden aria-pressed="false" title="Activar o desactivar el modo Halloween"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="#4a7a2a" d="M16 4c1-2 3-3 5-2-2 0-3 2-3.4 4.4L16 7z"/><ellipse cx="16" cy="18.5" rx="13" ry="11" fill="currentColor"/><path d="M10 9c-3 3-3 16 0 20M22 9c3 3 3 16 0 20M16 8v21" stroke="rgba(0,0,0,.25)" stroke-width="1.4" fill="none"/><path fill="#1a0f05" d="M9 15l4 2-4 2zM23 15l-4 2 4 2zM9 22c3 3 11 3 14 0l-2 1-1.4-1.6-1.6 1.8-2-1.8-2 1.8-1.6-1.8L11 23z"/></svg><span class="tx">Halloween</span><span class="st" id="hw-st">OFF</span></button>
 
 <div class="player" id="player" hidden role="dialog" aria-modal="true" aria-labelledby="player-title">
   <div class="player-bg" data-close></div>
@@ -805,6 +857,28 @@ a:hover .thumb .tag{animation:glitch .45s steps(2) 1}
 })();
 </script>
 
+<script>
+/* Botón del modo Halloween */
+(function(){
+  var btn=document.getElementById('hw-toggle'),st=document.getElementById('hw-st'),root=document.documentElement;
+  if(!window.urbexHwSeason){root.classList.remove('hw');btn.remove();return;}
+  var els=[].slice.call(document.querySelectorAll('[data-hw]'));
+  els.forEach(function(el){el.setAttribute('data-orig',el.textContent);});
+  function apply(){
+    var on=root.classList.contains('hw');
+    els.forEach(function(el){el.textContent=el.getAttribute(on?'data-hw':'data-orig');});
+    btn.setAttribute('aria-pressed',on?'true':'false');
+    st.textContent=on?'ON':'OFF';
+    btn.title=on?'Desactivar el modo Halloween':'Activar el modo Halloween';
+  }
+  btn.hidden=false; apply();
+  btn.addEventListener('click',function(){
+    root.classList.toggle('hw');
+    try{localStorage.setItem('urbex-hw',root.classList.contains('hw')?'1':'0');}catch(e){}
+    apply();
+  });
+})();
+</script>
 <script>
 /* MOVIMIENTO: parpadeo de la linterna, cabecera que se esconde, apariciones al hacer scroll y parallax del pie */
 (function(){

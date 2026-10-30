@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>DOOM · Urbex en Moto</title>
+<style>
+  html,body{margin:0;height:100%;background:#000;color:#ede6da;overflow:hidden}
+  body{display:grid;place-items:center;font-family:"VT323","IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace}
+  #wrap{position:relative;width:min(100vw,calc(100vh*4/3));aspect-ratio:4/3;max-height:100vh}
+  canvas{display:block;width:100%;height:100%;background:#000;image-rendering:pixelated;outline:none}
+  #msg{position:absolute;inset:0;display:grid;place-content:center;gap:10px;text-align:center;font-size:22px;letter-spacing:.06em;background:#000;pointer-events:none}
+  #msg b{font-size:34px;color:#ff4a3f;letter-spacing:.12em}
+  #msg.done{display:none}
+  .bar{width:min(320px,60vw);height:10px;border:2px solid #ede6da;margin:6px auto 0}
+  .bar i{display:block;height:100%;width:0;background:#ff4a3f;transition:width .2s}
+</style>
+</head>
+<body>
+<div id="wrap">
+  <canvas id="canvas" tabindex="0" oncontextmenu="event.preventDefault()"></canvas>
+  <div id="msg"><b>BATERÍA BAJA</b><span id="st">Cargando DOOM1.WAD…</span><div class="bar"><i id="pb"></i></div></div>
+</div>
+<script>
+  var msg=document.getElementById('msg'),st=document.getElementById('st'),pb=document.getElementById('pb'),canvas=document.getElementById('canvas');
+  function focusGame(){try{canvas.focus();}catch(e){}}
+  document.addEventListener('click',focusGame);
+  var Module={
+    noInitialRun:true,
+    canvas:canvas,
+    preRun:function(){
+      Module.FS.createPreloadedFile('','doom1.wad','doom1.wad',true,false);
+      Module.FS.createPreloadedFile('','default.cfg','default.cfg',true,true);
+    },
+    onRuntimeInitialized:function(){
+      msg.classList.add('done'); focusGame();
+      callMain(['-iwad','doom1.wad','-window','-nogui','-nomusic','-config','default.cfg']);
+    },
+    totalDependencies:0,
+    monitorRunDependencies:function(left){
+      this.totalDependencies=Math.max(this.totalDependencies,left);
+      var done=this.totalDependencies-left;
+      pb.style.width=(this.totalDependencies?Math.round(done/this.totalDependencies*100):0)+'%';
+    },
+    print:function(){}, printErr:function(){},
+    setStatus:function(t){if(t)st.textContent=t.replace('Downloading data...','Cargando DOOM1.WAD…');}
+  };
+  window.addEventListener('error',function(){st.textContent='No se ha podido cargar el juego en este navegador.';});
+</script>
+<script src="websockets-doom.js"></script>
+</body>
+</html>

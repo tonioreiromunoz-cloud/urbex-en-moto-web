@@ -1,0 +1,38 @@
+name: Instalar DOOM (easter egg)
+
+on:
+  workflow_dispatch:   # se lanza a mano una sola vez desde la pestaña Actions
+
+permissions:
+  contents: write
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Descargar el motor y el WAD shareware
+        run: |
+          npm pack @nicejsisverycool/tizendoom@0.1.6
+          tar xzf nicejsisverycool-tizendoom-0.1.6.tgz
+          mkdir -p doom
+          cp package/websockets-doom.js package/websockets-doom.wasm package/doom1.wad doom/
+
+      - name: Comprobar que son exactamente los archivos revisados
+        run: |
+          cd doom
+          printf '%s\n' \
+            "a2909044a9fbc5529f941c8dbf93cc2931927690e0341c737545cf0b9cff23fb  websockets-doom.js" \
+            "6366f83a58fe8596ce742a66dbf86871d315862c89c11e65b54935be03c7e6c4  websockets-doom.wasm" \
+            "1d7d43be501e67d927e415e0b8f3e29c3bf33075e859721816f652a526cac771  doom1.wad" \
+            | sha256sum -c -
+
+      - name: Guardar en el repositorio
+        run: |
+          git config user.name "urbex-bot"
+          git config user.email "urbex-bot@users.noreply.github.com"
+          git add doom/websockets-doom.js doom/websockets-doom.wasm doom/doom1.wad
+          git diff --cached --quiet && { echo "Ya estaban instalados."; exit 0; }
+          git commit -m "Easter egg: archivos de DOOM"
+          git push

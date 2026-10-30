@@ -584,12 +584,12 @@ a:hover .thumb .tag{animation:glitch .45s steps(2) 1}
   var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var lampEl=hero.querySelector('.dark'),lampQ=null;
   window.urbexLamp=function(e){
-    if(!lampQ)requestAnimationFrame(function(){
-      var r=hero.getBoundingClientRect(),x=(lampQ.clientX-r.left)/r.width,y=(lampQ.clientY-r.top)/r.height;
-      lampEl.style.transform='translate3d('+((x-1)*50).toFixed(2)+'%,'+((y-1)*50).toFixed(2)+'%,0)';
+    var r=hero.getBoundingClientRect(),first=!lampQ;
+    lampQ=[(e.clientX-r.left)/r.width,(e.clientY-r.top)/r.height];
+    if(first)requestAnimationFrame(function(){
+      lampEl.style.transform='translate3d('+((lampQ[0]-1)*50).toFixed(2)+'%,'+((lampQ[1]-1)*50).toFixed(2)+'%,0)';
       lampQ=null;
     });
-    lampQ=e;
   };
   if(window.matchMedia('(hover: hover)').matches){
     hero.addEventListener('pointermove',function(e){if(hero.classList.contains('sweep'))hero.classList.remove('sweep');window.urbexLamp(e);});

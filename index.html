@@ -471,7 +471,7 @@ a:hover .thumb .tag{animation:glitch .45s steps(2) 1}
 var on=window.urbexHwSeason;try{var v=localStorage.getItem('urbex-hw');if(v!==null&&window.urbexHwSeason)on=v==='1';}catch(e){}
 if(on)document.documentElement.classList.add('hw');})();
 /* Modo Navidad: activo por defecto del 1 de diciembre al 6 de enero (con ?navidad en la dirección se puede ver antes); cada visitante puede apagarlo */
-(function(){var d=new Date(),m=d.getMonth(),day=d.getDate(),f=/[?&]navidad(=|&|$)/.test(location.search);window.urbexXmSeason=f||m===11||(m===0&&day<=6);
+(function(){var d=new Date(),m=d.getMonth(),day=d.getDate(),f=/[?&#]navidad/i.test(location.search+location.hash);window.urbexXmSeason=f||m===11||(m===0&&day<=6);
 var on=window.urbexXmSeason;try{var v=localStorage.getItem('urbex-xm');if(v!==null&&window.urbexXmSeason&&!f)on=v==='1';}catch(e){}
 if(on)document.documentElement.classList.add('xm');})();
 </script>

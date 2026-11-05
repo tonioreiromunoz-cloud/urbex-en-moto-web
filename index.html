@@ -359,6 +359,43 @@ html.hw .hw-toggle svg{color:#ff7a18;filter:drop-shadow(0 0 6px rgba(255,122,24,
 html.hw .hw-toggle .st{color:#ff8f2e}
 .hw-toggle[hidden]{display:none!important}
 @media (max-width:600px){.hw-toggle .tx{display:none}.hw-toggle{padding:8px 12px 8px 8px}}
+/* ===== NAVIDAD ===== */
+html.xm{--tape:#e3c26a;--red-hot:#ff5148}
+html.xm .tape{color:#f6f1e7}
+html.xm .tape.a{background-color:#b8231f}
+html.xm .tape.b{background-color:#1c5236}
+html.xm .hero h1 .r{text-shadow:0 0 50px rgba(255,70,60,.45),0 0 14px rgba(255,210,140,.25)}
+html.xm .hero .fade{background:linear-gradient(0deg,var(--ink) 0%,rgba(13,12,12,.55) 28%,transparent 55%),linear-gradient(90deg,rgba(13,12,12,.75) 0%,transparent 55%),radial-gradient(ellipse at 50% -10%,rgba(170,205,255,.16),transparent 60%)}
+html.xm .big span{-webkit-text-stroke-color:rgba(200,225,255,.45)}
+.xm-only{display:none}
+html.xm .xm-only{display:block}
+.xm-snow{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.xm-snow b{position:absolute;inset:0 -60px;animation:sway 7s ease-in-out infinite alternate}
+.xm-snow b:nth-child(2){animation-duration:9s;animation-delay:-3s}
+.xm-snow b:nth-child(3){animation-duration:5.5s;animation-delay:-1s}
+.xm-snow i{position:absolute;left:0;right:0;will-change:transform;animation:snow linear infinite}
+.xm-snow b:nth-child(1) i{top:-180px;height:calc(100% + 180px);background-image:radial-gradient(circle at 98px 149px,rgba(255,255,255,0.75) 1px,transparent 2.2px),radial-gradient(circle at 46px 55px,rgba(255,255,255,0.75) 1px,transparent 2.2px),radial-gradient(circle at 42px 49px,rgba(255,255,255,0.75) 1px,transparent 2.2px),radial-gradient(circle at 43px 171px,rgba(255,255,255,0.75) 1px,transparent 2.2px),radial-gradient(circle at 174px 23px,rgba(255,255,255,0.75) 1px,transparent 2.2px),radial-gradient(circle at 180px 38px,rgba(255,255,255,0.75) 1px,transparent 2.2px),radial-gradient(circle at 180px 72px,rgba(255,255,255,0.75) 1px,transparent 2.2px),radial-gradient(circle at 3px 112px,rgba(255,255,255,0.75) 1px,transparent 2.2px),radial-gradient(circle at 119px 162px,rgba(255,255,255,0.75) 1px,transparent 2.2px);background-size:180px 180px;animation-duration:19s;opacity:.55}
+.xm-snow b:nth-child(2) i{top:-260px;height:calc(100% + 260px);background-image:radial-gradient(circle at 59px 14px,rgba(255,255,255,0.85) 1.7px,transparent 2.9px),radial-gradient(circle at 86px 251px,rgba(255,255,255,0.85) 1.7px,transparent 2.9px),radial-gradient(circle at 227px 155px,rgba(255,255,255,0.85) 1.7px,transparent 2.9px),radial-gradient(circle at 255px 43px,rgba(255,255,255,0.85) 1.7px,transparent 2.9px),radial-gradient(circle at 130px 80px,rgba(255,255,255,0.85) 1.7px,transparent 2.9px),radial-gradient(circle at 167px 156px,rgba(255,255,255,0.85) 1.7px,transparent 2.9px),radial-gradient(circle at 38px 187px,rgba(255,255,255,0.85) 1.7px,transparent 2.9px);background-size:260px 260px;animation-duration:13s;opacity:.7}
+.xm-snow b:nth-child(3) i{top:-420px;height:calc(100% + 420px);background-image:radial-gradient(circle at 338px 17px,rgba(255,255,255,0.7) 2.8px,transparent 4.0px),radial-gradient(circle at 109px 161px,rgba(255,255,255,0.7) 2.8px,transparent 4.0px),radial-gradient(circle at 173px 380px,rgba(255,255,255,0.7) 2.8px,transparent 4.0px),radial-gradient(circle at 35px 159px,rgba(255,255,255,0.7) 2.8px,transparent 4.0px),radial-gradient(circle at 49px 125px,rgba(255,255,255,0.7) 2.8px,transparent 4.0px);background-size:420px 420px;animation-duration:9s;opacity:.45}
+.xm-snow b:nth-child(1) i{--h:180px}.xm-snow b:nth-child(2) i{--h:260px}.xm-snow b:nth-child(3) i{--h:420px}
+@keyframes snow{from{transform:translate3d(0,0,0)}to{transform:translate3d(0,var(--h),0)}}
+@keyframes sway{from{transform:translate3d(-24px,0,0)}to{transform:translate3d(24px,0,0)}}
+.xm-lights{position:absolute;left:0;right:0;top:140px;height:70px;z-index:1;pointer-events:none;overflow:hidden}
+.xm-lights svg{display:block;height:70px}
+.xm-lights .bl{animation:blink var(--d,1.6s) steps(1) var(--dl,0s) infinite}
+.xm-lights .dead .on{opacity:0;animation:dead 7s steps(1) var(--dl,0s) infinite}
+@keyframes blink{0%{opacity:1}50%{opacity:.28}}
+@keyframes dead{0%,90%{opacity:0}91%{opacity:1}92.5%{opacity:0}94%{opacity:1}95%{opacity:0}}
+.xm-santa{position:absolute;left:0;top:0;width:clamp(96px,10vw,150px);color:rgba(237,230,218,.42);pointer-events:none;z-index:0;will-change:transform,opacity;opacity:0;animation:santa 30s linear 3s infinite}
+.xm-santa svg{display:block;width:100%;height:auto;animation:bob .45s ease-in-out infinite alternate}
+@keyframes santa{0%{opacity:0;transform:translate3d(-16vw,22vh,0) rotate(-4deg)}2%{opacity:1}28%{transform:translate3d(48vw,10vh,0) rotate(-1deg)}54%{opacity:1;transform:translate3d(112vw,17vh,0) rotate(-5deg)}56%,100%{opacity:0;transform:translate3d(112vw,17vh,0)}}
+@media (max-width:700px){.xm-lights{top:60px}.xm-santa{display:none!important}}
+@keyframes bob{from{transform:translateY(0)}to{transform:translateY(-3px)}}
+@media (prefers-reduced-motion:reduce){.xm-snow b,.xm-snow i,.xm-lights .bl,.xm-santa,.xm-santa svg{animation:none}.xm-santa{display:none!important}}
+html.xm #xm-toggle{border-color:#e3c26a}
+#xm-toggle:hover{border-color:#e3c26a}
+html.xm #xm-toggle svg{color:#ff5148;filter:drop-shadow(0 0 6px rgba(255,81,72,.7))}
+html.xm #xm-toggle .st{color:#e3c26a}
 
 
 /* ===== EASTER EGG: DOOM ===== */
@@ -433,6 +470,10 @@ a:hover .thumb .tag{animation:glitch .45s steps(2) 1}
 (function(){var d=new Date(),m=d.getMonth(),day=d.getDate();window.urbexHwSeason=(m===9&&day>=20)||(m===10&&day<=2);
 var on=window.urbexHwSeason;try{var v=localStorage.getItem('urbex-hw');if(v!==null&&window.urbexHwSeason)on=v==='1';}catch(e){}
 if(on)document.documentElement.classList.add('hw');})();
+/* Modo Navidad: activo por defecto del 1 de diciembre al 6 de enero (con ?navidad en la dirección se puede ver antes); cada visitante puede apagarlo */
+(function(){var d=new Date(),m=d.getMonth(),day=d.getDate(),f=/[?&]navidad(=|&|$)/.test(location.search);window.urbexXmSeason=f||m===11||(m===0&&day<=6);
+var on=window.urbexXmSeason;try{var v=localStorage.getItem('urbex-xm');if(v!==null&&window.urbexXmSeason&&!f)on=v==='1';}catch(e){}
+if(on)document.documentElement.classList.add('xm');})();
 </script>
 </head>
 <body>
@@ -466,18 +507,21 @@ if(on)document.documentElement.classList.add('hw');})();
     <div class="hw-only hw-ghost" aria-hidden="true"><svg viewBox="0 0 60 76"><path fill="currentColor" d="M30 2C15 2 6 13 6 28v44l7-6 6 6 6-6 5 6 5-6 6 6 6-6 7 6V28C54 13 45 2 30 2z"/><ellipse cx="22" cy="30" rx="4" ry="6" fill="#0c0910"/><ellipse cx="38" cy="30" rx="4" ry="6" fill="#0c0910"/><ellipse cx="30" cy="46" rx="5" ry="7" fill="#0c0910"/></svg></div>
     <div class="hw-only hw-web l" aria-hidden="true"><svg viewBox="0 0 230 230" fill="none" stroke="currentColor" stroke-width="1.1"><path d="M0 0L230.0 0.0M0 0L222.2 59.5M0 0L195.1 121.9M0 0L147.8 176.2M0 0L86.2 213.3M0 0L24.0 228.7M0 0L0.0 230.0M40.0 0.0Q34.1 4.5 38.6 10.4Q31.5 13.7 33.9 21.2Q26.0 22.6 25.7 30.6Q17.7 29.5 15.0 37.1Q8.3 33.4 4.2 39.8Q1.8 34.4 0.0 40.0M75.0 0.0Q63.9 8.4 72.4 19.4Q59.2 25.7 63.6 39.7Q48.7 42.3 48.2 57.5Q33.2 55.3 28.1 69.5Q15.6 62.6 7.8 74.6Q3.4 64.4 0.0 75.0M112.0 0.0Q95.5 12.6 108.2 29.0Q88.3 38.4 95.0 59.4Q72.7 63.2 72.0 85.8Q49.6 82.6 42.0 103.8Q23.3 93.5 11.7 111.4Q5.0 96.2 0.0 112.0M150.0 0.0Q127.9 16.8 144.9 38.8Q118.3 51.4 127.2 79.5Q97.4 84.6 96.4 114.9Q66.4 110.6 56.2 139.1Q31.2 125.2 15.7 149.2Q6.8 128.8 0.0 150.0M190.0 0.0Q162.0 21.3 183.5 49.2Q149.8 65.2 161.1 100.7Q123.3 107.2 122.1 145.5Q84.2 140.1 71.2 176.2Q39.5 158.5 19.9 189.0Q8.6 163.2 0.0 190.0"/><path d="M118 0v58" stroke-width=".8"/><circle cx="118" cy="64" r="5" fill="currentColor"/><path d="M113 60l-6-4M113 64h-7M113 68l-6 4M123 60l6-4M123 64h7M123 68l6 4" stroke-width=".9"/></svg></div>
     <div class="hw-only hw-web r" aria-hidden="true"><svg viewBox="0 0 230 230" fill="none" stroke="currentColor" stroke-width="1.1"><path d="M0 0L230.0 0.0M0 0L222.2 59.5M0 0L195.1 121.9M0 0L147.8 176.2M0 0L86.2 213.3M0 0L24.0 228.7M0 0L0.0 230.0M40.0 0.0Q34.1 4.5 38.6 10.4Q31.5 13.7 33.9 21.2Q26.0 22.6 25.7 30.6Q17.7 29.5 15.0 37.1Q8.3 33.4 4.2 39.8Q1.8 34.4 0.0 40.0M75.0 0.0Q63.9 8.4 72.4 19.4Q59.2 25.7 63.6 39.7Q48.7 42.3 48.2 57.5Q33.2 55.3 28.1 69.5Q15.6 62.6 7.8 74.6Q3.4 64.4 0.0 75.0M112.0 0.0Q95.5 12.6 108.2 29.0Q88.3 38.4 95.0 59.4Q72.7 63.2 72.0 85.8Q49.6 82.6 42.0 103.8Q23.3 93.5 11.7 111.4Q5.0 96.2 0.0 112.0M150.0 0.0Q127.9 16.8 144.9 38.8Q118.3 51.4 127.2 79.5Q97.4 84.6 96.4 114.9Q66.4 110.6 56.2 139.1Q31.2 125.2 15.7 149.2Q6.8 128.8 0.0 150.0M190.0 0.0Q162.0 21.3 183.5 49.2Q149.8 65.2 161.1 100.7Q123.3 107.2 122.1 145.5Q84.2 140.1 71.2 176.2Q39.5 158.5 19.9 189.0Q8.6 163.2 0.0 190.0"/><path d="M118 0v58" stroke-width=".8"/><circle cx="118" cy="64" r="5" fill="currentColor"/><path d="M113 60l-6-4M113 64h-7M113 68l-6 4M123 60l6-4M123 64h7M123 68l6 4" stroke-width=".9"/></svg></div>
+    <div class="xm-only xm-snow" aria-hidden="true"><b><i></i></b><b><i></i></b><b><i></i></b></div>
+    <div class="xm-only xm-lights" id="xm-lights" aria-hidden="true"></div>
+    <div class="xm-only xm-santa" aria-hidden="true"><svg viewBox="0 0 130 74" aria-hidden="true"><defs><linearGradient id="xmBeam" x1="0" x2="1"><stop offset="0" stop-color="#ffe7a3" stop-opacity=".55"/><stop offset="1" stop-color="#ffe7a3" stop-opacity="0"/></linearGradient></defs><path d="M98 30L130 20V44Z" fill="url(#xmBeam)"/><g fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="58" r="12"/><circle cx="96" cy="58" r="12"/><path d="M24 58L44 42H74L96 58M96 58L88 32M84 29L94 27"/><path d="M62 40L72 20M71 22L88 30" stroke-width="5"/></g><path d="M46 40Q60 29 78 37L76 44H48Z" fill="currentColor"/><circle cx="76" cy="13" r="6.5" fill="currentColor"/><path d="M69 10L83 8L64 0Z" fill="#cf2f2a"/><circle cx="63" cy="1.5" r="2.6" fill="#f6f1e7"/><circle cx="52" cy="24" r="12" fill="currentColor" opacity=".8"/><path d="M50 12Q53 9 56 12" stroke="currentColor" stroke-width="2.5" fill="none"/><circle cx="97" cy="30" r="2.4" fill="#ffe7a3"/></svg></div>
     <div class="osd" aria-hidden="true">
       <i></i><i></i><i></i><i></i>
       <span class="rec">REC</span>
       <span class="bat" id="bat" role="button" tabindex="0" title="¿Batería baja?" aria-label="Batería"><b></b></span>
-      <span class="mode" data-hw="SP ▸ 31 OCT ▸ NIGHT">SP ▸ NIGHT</span>
+      <span class="mode" data-hw="SP ▸ 31 OCT ▸ NIGHT" data-xm="SP ▸ 24 DIC ▸ NIGHT">SP ▸ NIGHT</span>
       <span class="time" id="clock">--.--.---- --:--:--</span>
     </div>
     <div class="wrap">
       <div>
-        <p class="label eyebrow" data-hw="Edición Halloween · Exploración urbana · Dos ruedas">Exploración urbana · Rutas · Dos ruedas</p>
+        <p class="label eyebrow" data-hw="Edición Halloween · Exploración urbana · Dos ruedas" data-xm="Edición Navidad · Exploración urbana · Dos ruedas">Exploración urbana · Rutas · Dos ruedas</p>
         <h1><span class="w">Urbex</span><span class="r">en Moto</span></h1>
-        <p class="tagline" data-hw="Esta noche, no entres solo">Explorando lo que otros olvidaron</p>
+        <p class="tagline" data-hw="Esta noche, no entres solo" data-xm="Explorando las Navidades que otros olvidaron">Explorando lo que otros olvidaron</p>
         <p class="lead">Fábricas, pueblos vacíos, túneles y centrales abandonadas. Llegamos en moto, entramos con linterna y os lo enseñamos tal y como lo encontramos.</p>
         <div class="ctas">
           <a class="btn red" href="https://www.youtube.com/@UrbexenMotoTyJ?sub_confirmation=1" target="_blank" rel="noopener">Suscríbete al canal</a>
@@ -493,8 +537,8 @@ if(on)document.documentElement.classList.add('hw');})();
   </section>
 
   <div class="tapes" aria-hidden="true">
-    <div class="tape a"><span data-hw="Feliz Halloween ✕ No entres solo ✕ Algo nos sigue ✕ Urbex en Moto ✕ Feliz Halloween ✕ No entres solo ✕ Algo nos sigue ✕ Urbex en Moto ✕ Feliz Halloween ✕ No entres solo ✕ Algo nos sigue ✕ Urbex en Moto ✕ ">Prohibido el paso ✕ Urbex en Moto ✕ Peligro de derrumbe ✕ Explorando lo que otros olvidaron ✕ Prohibido el paso ✕ Urbex en Moto ✕ Peligro de derrumbe ✕ Explorando lo que otros olvidaron ✕ Prohibido el paso ✕ Urbex en Moto ✕ Peligro de derrumbe ✕ Explorando lo que otros olvidaron ✕&nbsp;</span></div>
-    <div class="tape b"><span data-hw="Truco o trato ✕ Zona encantada ✕ Truco o trato ✕ Zona encantada ✕ Truco o trato ✕ Zona encantada ✕ Truco o trato ✕ Zona encantada ✕ Truco o trato ✕ Zona encantada ✕ Truco o trato ✕ Zona encantada ✕ Truco o trato ✕ Zona encantada ✕ Truco o trato ✕ Zona encantada ✕ ">No pasar ✕ Zona abandonada ✕ No pasar ✕ Zona abandonada ✕ No pasar ✕ Zona abandonada ✕ No pasar ✕ Zona abandonada ✕ No pasar ✕ Zona abandonada ✕ No pasar ✕ Zona abandonada ✕ No pasar ✕ Zona abandonada ✕ No pasar ✕ Zona abandonada ✕&nbsp;</span></div>
+    <div class="tape a" data-xm="Feliz Navidad ✕ Urbex en Moto ✕ Próspero año abandonado ✕ Explorando lo que otros olvidaron ✕ Feliz Navidad ✕ Urbex en Moto ✕ Próspero año abandonado ✕ Explorando lo que otros olvidaron ✕ Feliz Navidad ✕ Urbex en Moto ✕ Próspero año abandonado ✕ Explorando lo que otros olvidaron ✕ "><span data-hw="Feliz Halloween ✕ No entres solo ✕ Algo nos sigue ✕ Urbex en Moto ✕ Feliz Halloween ✕ No entres solo ✕ Algo nos sigue ✕ Urbex en Moto ✕ Feliz Halloween ✕ No entres solo ✕ Algo nos sigue ✕ Urbex en Moto ✕ ">Prohibido el paso ✕ Urbex en Moto ✕ Peligro de derrumbe ✕ Explorando lo que otros olvidaron ✕ Prohibido el paso ✕ Urbex en Moto ✕ Peligro de derrumbe ✕ Explorando lo que otros olvidaron ✕ Prohibido el paso ✕ Urbex en Moto ✕ Peligro de derrumbe ✕ Explorando lo que otros olvidaron ✕&nbsp;</span></div>
+    <div class="tape b" data-xm="Prohibido el paso a Papá Noel ✕ Zona nevada ✕ Prohibido el paso a Papá Noel ✕ Zona nevada ✕ Prohibido el paso a Papá Noel ✕ Zona nevada ✕ Prohibido el paso a Papá Noel ✕ Zona nevada ✕ Prohibido el paso a Papá Noel ✕ Zona nevada ✕ Prohibido el paso a Papá Noel ✕ Zona nevada ✕ "><span data-hw="Truco o trato ✕ Zona encantada ✕ Truco o trato ✕ Zona encantada ✕ Truco o trato ✕ Zona encantada ✕ Truco o trato ✕ Zona encantada ✕ Truco o trato ✕ Zona encantada ✕ Truco o trato ✕ Zona encantada ✕ Truco o trato ✕ Zona encantada ✕ Truco o trato ✕ Zona encantada ✕ ">No pasar ✕ Zona abandonada ✕ No pasar ✕ Zona abandonada ✕ No pasar ✕ Zona abandonada ✕ No pasar ✕ Zona abandonada ✕ No pasar ✕ Zona abandonada ✕ No pasar ✕ Zona abandonada ✕ No pasar ✕ Zona abandonada ✕ No pasar ✕ Zona abandonada ✕&nbsp;</span></div>
   </div>
 
   <section class="stats-sec" id="cifras" hidden aria-label="El canal en cifras">
@@ -633,6 +677,7 @@ if(on)document.documentElement.classList.add('hw');})();
 </footer>
 
 <button type="button" class="hw-toggle" id="hw-toggle" hidden aria-pressed="false" title="Activar o desactivar el modo Halloween"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="#4a7a2a" d="M16 4c1-2 3-3 5-2-2 0-3 2-3.4 4.4L16 7z"/><ellipse cx="16" cy="18.5" rx="13" ry="11" fill="currentColor"/><path d="M10 9c-3 3-3 16 0 20M22 9c3 3 3 16 0 20M16 8v21" stroke="rgba(0,0,0,.25)" stroke-width="1.4" fill="none"/><path fill="#1a0f05" d="M9 15l4 2-4 2zM23 15l-4 2 4 2zM9 22c3 3 11 3 14 0l-2 1-1.4-1.6-1.6 1.8-2-1.8-2 1.8-1.6-1.8L11 23z"/></svg><span class="tx">Halloween</span><span class="st" id="hw-st">OFF</span></button>
+<button type="button" class="hw-toggle" id="xm-toggle" hidden aria-pressed="false" title="Activar o desactivar el modo Navidad"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 1.5v3" stroke="#a1978e" stroke-width="1.6" fill="none"/><rect x="12.5" y="4.5" width="7" height="4" rx="1" fill="#c9a24a"/><circle cx="16" cy="19" r="11.5" fill="currentColor"/><path d="M5.2 16.5Q16 21.5 26.8 16.5M5.2 21.5Q16 26.5 26.8 21.5" stroke="rgba(255,255,255,.35)" stroke-width="1.4" fill="none"/><circle cx="11.5" cy="14" r="2.2" fill="rgba(255,255,255,.55)"/></svg><span class="tx">Navidad</span><span class="st" id="xm-st">OFF</span></button>
 
 <div class="doom" id="doom" hidden role="dialog" aria-modal="true" aria-label="DOOM">
   <div class="doom-box">
@@ -909,6 +954,43 @@ if(on)document.documentElement.classList.add('hw');})();
   document.getElementById('doom-x').addEventListener('click',close);
   box.addEventListener('click',function(e){if(e.target===box)close();});
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!box.hidden)close();});
+})();
+</script>
+<script>
+/* Botón del modo Navidad y guirnalda de luces */
+(function(){
+  var btn=document.getElementById('xm-toggle'),st=document.getElementById('xm-st'),root=document.documentElement,box=document.getElementById('xm-lights');
+  if(!window.urbexXmSeason){root.classList.remove('xm');btn.remove();return;}
+  /* guirnalda: tramos de cable con bombillas; alguna está fundida y parpadea de vez en cuando */
+  var sag=window.innerWidth<=700?18:40,W=220,n=Math.ceil(Math.max(screen.width,window.innerWidth)/W)+1,cols=['#ff4136','#ffcf4a','#3fd17a','#58a8ff','#fff3d6'],defs='',wire='M0 4',bulbs='',k=0;
+  cols.forEach(function(c,i){defs+='<radialGradient id="xmg'+i+'"><stop offset="0" stop-color="'+c+'" stop-opacity=".75"/><stop offset="1" stop-color="'+c+'" stop-opacity="0"/></radialGradient>';});
+  for(var s=0;s<n;s++){
+    wire+=' Q'+(s*W+W/2)+' '+(4+2*sag)+' '+((s+1)*W)+' 4';
+    [.12,.31,.5,.69,.88].forEach(function(tt){
+      var x=(s+tt)*W,y=4+4*sag*tt*(1-tt),ci=k%5,dead=(k%7===4);
+      var lit='<circle cx="'+x+'" cy="'+(y+8)+'" r="11" fill="url(#xmg'+ci+')"/><ellipse cx="'+x+'" cy="'+(y+8)+'" rx="3.6" ry="5.4" fill="'+cols[ci]+'"/>';
+      bulbs+='<rect x="'+(x-2.4)+'" y="'+(y-1)+'" width="4.8" height="4.4" rx="1" fill="#1d3a26"/>';
+      if(dead)bulbs+='<g class="dead" style="--dl:-'+(k%5)*1.3+'s"><ellipse cx="'+x+'" cy="'+(y+8)+'" rx="3.6" ry="5.4" fill="#3c3633"/><g class="on">'+lit+'</g></g>';
+      else bulbs+='<g class="bl" style="--d:'+(1.2+(k%4)*.45).toFixed(2)+'s;--dl:-'+((k*0.37)%2).toFixed(2)+'s">'+lit+'</g>';
+      k++;
+    });
+  }
+  box.innerHTML='<svg width="'+(n*W)+'" viewBox="0 0 '+(n*W)+' 70"><defs>'+defs+'</defs><path d="'+wire+'" fill="none" stroke="rgba(30,26,24,.95)" stroke-width="1.6"/>'+bulbs+'</svg>';
+  var els=[].slice.call(document.querySelectorAll('[data-xm]'));
+  els.forEach(function(el){if(!el.hasAttribute('data-orig'))el.setAttribute('data-orig',el.textContent);});
+  function apply(){
+    var on=root.classList.contains('xm');
+    els.forEach(function(el){el.textContent=el.getAttribute(on?'data-xm':'data-orig');});
+    btn.setAttribute('aria-pressed',on?'true':'false');
+    st.textContent=on?'ON':'OFF';
+    btn.title=on?'Desactivar el modo Navidad':'Activar el modo Navidad';
+  }
+  btn.hidden=false; apply();
+  btn.addEventListener('click',function(){
+    root.classList.toggle('xm');
+    try{localStorage.setItem('urbex-xm',root.classList.contains('xm')?'1':'0');}catch(e){}
+    apply();
+  });
 })();
 </script>
 <script>
